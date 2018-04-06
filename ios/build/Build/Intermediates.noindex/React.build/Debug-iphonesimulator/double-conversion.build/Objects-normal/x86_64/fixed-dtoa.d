@@ -1,0 +1,6 @@
+dependencies: \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/third-party/double-conversion-1.1.5/src/fixed-dtoa.cc \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/third-party/double-conversion-1.1.5/src/fixed-dtoa.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/third-party/double-conversion-1.1.5/src/utils.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/third-party/double-conversion-1.1.5/src/ieee.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/third-party/double-conversion-1.1.5/src/diy-fp.h

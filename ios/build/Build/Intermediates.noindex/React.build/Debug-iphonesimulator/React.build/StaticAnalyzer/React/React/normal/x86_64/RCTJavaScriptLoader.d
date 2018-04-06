@@ -1,0 +1,26 @@
+dependencies: \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTJavaScriptLoader.mm \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/seth/workspace/Fridge-Vision/ios/build/Build/Products/Debug-iphonesimulator/include/cxxreact/JSBundleType.h \
+  /Users/seth/workspace/Fridge-Vision/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/seth/workspace/Fridge-Vision/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/seth/workspace/Fridge-Vision/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/seth/workspace/Fridge-Vision/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/seth/workspace/Fridge-Vision/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTMultipartDataTask.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTMultipartStreamReader.h \
+  /Users/seth/workspace/Fridge-Vision/node_modules/react-native/React/Base/RCTPerformanceLogger.h
