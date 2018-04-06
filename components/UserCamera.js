@@ -13,7 +13,6 @@ export default class UserCamera extends React.Component {
     async function uploadImageAsync(uri) {
       console.log(uri)
       let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
-      // let apiUrl = "http://localhost:3000/upload"
       let uriParts = uri.split('.');
       let fileType = uriParts[uriParts.length - 1]
       let formData = new FormData()
@@ -51,7 +50,7 @@ export default class UserCamera extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#789AFF',
     alignItems: 'center',
     justifyContent: 'center',
   },

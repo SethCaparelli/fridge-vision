@@ -10,11 +10,12 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Welcome To</Text>
-        {/* <Image style={{flex: 0.7, height: "100%", width: "75%"}} source={require("./fridgely-icon.png")}/> */}
+        <Text style={{fontSize: 30}}>Welcome To</Text>
+        <Image style={{height: 239, width: 230, marginLeft: 66}} source={require("./assets/icons/fridgely-icon.png")}/>
         <Button
           title="Get Started"
           onPress={() => this.props.navigation.navigate('UserCamera')}
+          style={{fontSize: 30}}
         />
       </View>
     );
@@ -28,14 +29,18 @@ export default StackNavigator ({
   UserCamera: {
     screen: UserCamera,
   }
+  // Users: {
+  //   screen: Users
+  // }
 })
 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    flexDirection: "column",
+    backgroundColor: '#85E4FF',
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
   },
 });

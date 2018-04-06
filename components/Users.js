@@ -3,7 +3,7 @@ import { View, Text, Picker, TextInput, Button } from "react-native"
 
 export default  class Users extends Component {
     state = {
-        user: [],
+        users: [],
         newUser: ""
     }
 
@@ -23,14 +23,14 @@ export default  class Users extends Component {
         })
     }
 
-    updateUser = (selectedUser) => {
+    updateUser = () => {
+        const newUser = this.name.value
         this.setState({
-            selectedUser
+            newUser
         })
     }
 
     postUser = () => {
-        const newUser = this.state.newUser
         console.log(newUser)
         fetch("https://pure-meadow-62546.herokuapp.com/user", {
             method: "POST",
@@ -49,15 +49,16 @@ export default  class Users extends Component {
     }
 
     render() {
+        console.log(this.state.users)
         return (
             <View>
-                <Picker selectedValue={this.state.user} onValueChange={this.updateUser}>
-                    {this.state.user.map(user => <Picker.Item label= {user.userName} />)}
+                <Picker style={{borderWidth: 1, borderColor: "red"}} selectedValue={this.state.users} onValueChange={this.updateUser}>
+                    {this.state.users.map(user => <Picker.Item label= {user.userName} />)}
                 </Picker>
                 <TextInput
                     style = {{borderColor: "black", borderWidth: 1}}
                     placeHolder = "Add User"
-                    onChange = {this.updateUser}
+                    onChange = {(e) => this.updateUser(e)}
                     />
                 <Button
                     title = "Submit"

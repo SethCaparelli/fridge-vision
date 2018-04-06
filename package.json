@@ -14,12 +14,18 @@
     "ios": "react-native run-ios",
     "test": "jest"
   },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts"
+    ]
+  },
   "jest": {
     "preset": "react-native"
   },
   "dependencies": {
     "react": "16.3.0-alpha.1",
     "react-native": "0.54.0",
+    "react-native-global-font": "^1.0.1",
     "react-native-image-picker": "^0.26.7",
     "react-navigation": "^1.5.11"
   }
