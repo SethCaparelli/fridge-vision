@@ -1,51 +1,41 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import ImagePicker from "react-native-image-picker"
-import { RNS3 } from "react-native-aws3"
-// import { aws } from "./keys"
+import React from "react"
+import { StyleSheet, Text, View, Button, Image } from "react-native"
+// import Users from "./components/Users"
+import UserCamera from "./components/UserCamera"
+import { StackNavigator } from 'react-navigation'
 
-export default class App extends React.Component {
-  takePic = () => {
-    console.log("touched")
-    ImagePicker.showImagePicker({}, response => {
-      console.log(response)
-      const file = {
-        uri: response.uri,
-        name: response.filename,
-        type: "image/png"
-      }
-      const config = {
-        keyPrefix: "fridgely/",
-        bucket: "fridgely",
-        region: "us-west-2",
-        accessKey: "",
-        secretKey: "",
-        successActionStatus: 201
-      }
-      RNS3.put(file, config)
-      .then(res => {
-        console.log(res.body.postResponse.location)
-      })
-    })
-  }
 
+
+class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={this.takePic}>
-          <Text>Take Pic</Text>
-        </TouchableOpacity>
+        <Text>Welcome To</Text>
+        {/* <Image style={{flex: 0.7, height: "100%", width: "75%"}} source={require("./fridgely-icon.png")}/> */}
+        <Button
+          title="Get Started"
+          onPress={() => this.props.navigation.navigate('UserCamera')}
+        />
       </View>
     );
   }
 }
 
+export default StackNavigator ({
+  Home: {
+    screen: App,
+  },
+  UserCamera: {
+    screen: UserCamera,
+  }
+})
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
