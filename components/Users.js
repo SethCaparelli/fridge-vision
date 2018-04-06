@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View, Text, Picker, TextInput, Button } from "react-native"
+import { StyleSheet, View, Text, Picker, TextInput, Button } from "react-native"
 
 export default  class Users extends Component {
     state = {
@@ -10,10 +10,11 @@ export default  class Users extends Component {
     componentDidMount = () => {
         fetch("https://pure-meadow-62546.herokuapp.com/user")
         .then(response => {
-            console.log(response)
-            // return response.json()
+            // console.log(response)
+            return response.json()
         })
         .then(users => {
+            // console.log(users)
             this.setState({
                 users: users.users
             })
@@ -51,20 +52,27 @@ export default  class Users extends Component {
     render() {
         console.log(this.state.users)
         return (
-            <View>
-                <Picker style={{borderWidth: 1, borderColor: "red"}} selectedValue={this.state.users} onValueChange={this.updateUser}>
-                    {this.state.users.map(user => <Picker.Item label= {user.userName} />)}
-                </Picker>
+            <View style={styles.container}>
                 <TextInput
                     style = {{borderColor: "black", borderWidth: 1}}
                     placeHolder = "Add User"
-                    onChange = {(e) => this.updateUser(e)}
                     />
                 <Button
                     title = "Submit"
                     onPress = {this.postUser}
                     />
+                <Picker style={{borderWidth: 1, borderColor: "black"}} selectedValue={this.state.users}>
+                    {this.state.users.map(user => <Picker.Item key={user} label= {user.userName} />)}
+                </Picker>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-around"
+    }
+})

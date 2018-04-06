@@ -14,6 +14,7 @@
 		00E356F31AD99517003FC87E /* FridgeVisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FridgeVisionTests.m */; };
 		06D3DD072076F81700DCAAF9 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D3DD062076F7F300DCAAF9 /* libRNImagePicker.a */; };
 		06D3DD3C2077001A00DCAAF9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D3DD152077001A00DCAAF9 /* Default-568h@2x.png */; };
+		0D14FC2A899F4ADC827F7848 /* Young.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B4A715B673C414FB6222F47 /* Young.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -36,9 +37,9 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* FridgeVisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FridgeVisionTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		71053FC9B78A479D89C83D86 /* Market_Deco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F16FDD5B70524D0394FAB351 /* Market_Deco.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		71053FC9B78A479D89C83D86 /* Market_Deco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F16FDD5B70524D0394FAB351 /* Market_Deco.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,11 +350,12 @@
 		2D02E47B1E0B4A5D006451C7 /* FridgeVision-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FridgeVision-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* FridgeVision-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FridgeVision-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B4A715B673C414FB6222F47 /* Young.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Young.ttf; path = ../assets/fonts/Young.ttf; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		F16FDD5B70524D0394FAB351 /* Market_Deco.ttf */ = {isa = PBXFileReference; name = "Market_Deco.ttf"; path = "../assets/fonts/Market_Deco.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F16FDD5B70524D0394FAB351 /* Market_Deco.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Market_Deco.ttf; path = ../assets/fonts/Market_Deco.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,6 +554,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		75E7F87D26004875B136711E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F16FDD5B70524D0394FAB351 /* Market_Deco.ttf */,
+				4B4A715B673C414FB6222F47 /* Young.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -625,15 +636,6 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
-		};
-		75E7F87D26004875B136711E /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				F16FDD5B70524D0394FAB351 /* Market_Deco.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -1094,6 +1096,7 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				06D3DD3C2077001A00DCAAF9 /* Default-568h@2x.png in Resources */,
 				71053FC9B78A479D89C83D86 /* Market_Deco.ttf in Resources */,
+				0D14FC2A899F4ADC827F7848 /* Young.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
