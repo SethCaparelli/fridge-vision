@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Button, Image } from "react-native"
 // import Users from "./components/Users"
 import UserCamera from "./components/UserCamera"
 import { StackNavigator } from 'react-navigation'
-import { Fonts } from "./src/utils/Fonts"
 class App extends React.Component {
 
   render() {
