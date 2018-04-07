@@ -25,9 +25,8 @@ export default  class Users extends Component {
     }
 
     updateUser = () => {
-        const newUser = this.name.value
         this.setState({
-            newUser
+            newUser: value
         })
     }
 
@@ -56,6 +55,8 @@ export default  class Users extends Component {
                 <TextInput
                     style = {{borderColor: "black", borderWidth: 1}}
                     placeHolder = "Add User"
+                    value={this.state.newUser}
+                    onChangeText={this.updateUser}
                     />
                 <Button
                     title = "Submit"

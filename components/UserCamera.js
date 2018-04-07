@@ -1,18 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import ImagePicker from "react-native-image-picker"
+import { StackNavigator } from 'react-navigation'
 
 export default class UserCamera extends React.Component {
+  static navigationOptions = {
+    title: 'Camera',
+    
+  }
   takePic = () => {
     console.log("touched")
     ImagePicker.showImagePicker({}, response => {
       console.log(response)
       uploadImageAsync(response.uri)
+      
     })
+
 
     async function uploadImageAsync(uri) {
       console.log(uri)
-      let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
+      let apiUrl = ''
       let uriParts = uri.split('.');
       let fileType = uriParts[uriParts.length - 1]
       let formData = new FormData()
@@ -40,8 +47,12 @@ export default class UserCamera extends React.Component {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={this.takePic}>
-          <Text>}Take Pic</Text>
+          <Text>Take Pic</Text>
         </TouchableOpacity>
+        <Button 
+      title= "Get Recipes"
+        onPress={() => {this.props.navigation.navigate('Recipes')}}
+        />
       </View>
     )
   }
