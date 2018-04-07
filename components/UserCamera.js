@@ -8,15 +8,13 @@ export default class UserCamera extends React.Component {
     title: 'Camera',
   }
   takePic = () => {
-    console.log("touched")
+    this.props.navigation.navigate('UserCamera')
     ImagePicker.showImagePicker({}, response => {
-      console.log(response)
       uploadImageAsync(response.uri)
     })
 
 
     async function uploadImageAsync(uri) {
-      console.log(uri)
       let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
       let uriParts = uri.split('.');
       let fileType = uriParts[uriParts.length - 1]
@@ -26,7 +24,6 @@ export default class UserCamera extends React.Component {
         name: `photo.${fileType}`,
         type: `image/${fileType}`,
       })
-      console.log(formData)
       let options = {
         method: 'POST',
         body: formData,
@@ -48,7 +45,7 @@ export default class UserCamera extends React.Component {
           <Text>Take Pic</Text>
         </TouchableOpacity>
         <Button
-      title= "Get Recipes"
+        title= "Get Recipes"
         onPress={() => {this.props.navigation.navigate('Recipes')}}
         />
       </View>
@@ -59,7 +56,7 @@ export default class UserCamera extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#789AFF',
+    backgroundColor: '#85E4FF',
     alignItems: 'center',
     justifyContent: 'center',
   },

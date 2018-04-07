@@ -89,27 +89,31 @@ export default class Users extends Component {
         }
         return (
             <View style={styles.container}>
-                <Text>Enter New User</Text>
-                <TextInput
-                    style = {{borderColor: "black", borderWidth: 1}}
-                    placeHolder = "Add User"
-                    value={this.state.newUser}
-                    onChangeText={this.updateUser}
-                />
-                <Button
-                    title = "Add User"
-                    onPress = {this.postUser}
-                />
-                    {yourUser}
-                <Text>Choose Existing User</Text>
-                <Picker
-                    style={{borderWidth: 1, borderColor: "black"}}
-                    selectedValue={this.state.users}
-                    onValueChange={(user) => this.setState({selectedUser: user, visibleModal: true})}>
-                    {this.state.users
-                        .map(user =>
-                    <Picker.Item key={user} label= {user.userName} value={user} />)}
-                </Picker>
+                <View>
+                    <Text>Enter New User</Text>
+                    <TextInput
+                        style = {{borderColor: "black", borderWidth: 1}}
+                        placeHolder = "Add User"
+                        value={this.state.newUser}
+                        onChangeText={this.updateUser}
+                    />
+                    <Button
+                        title = "Add User"
+                        onPress = {this.postUser}
+                    />
+                </View>
+                <View>
+                        {yourUser}
+                    <Text>Choose Existing User</Text>
+                    <Picker
+                        style={{borderWidth: 1, borderColor: "black"}}
+                        selectedValue={this.state.users}
+                        onValueChange={(user) => this.setState({selectedUser: user, visibleModal: true})}>
+                        {this.state.users
+                            .map(user =>
+                        <Picker.Item key={user} label= {user.userName} value={user} />)}
+                    </Picker>
+                </View>
             </View>
         )
     }
@@ -119,6 +123,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        justifyContent: "space-around"
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#94E1F2"
     }
 })

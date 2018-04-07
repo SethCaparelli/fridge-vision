@@ -11,7 +11,7 @@ class Card extends React.Component {
 
   render() {
     return (
-      <View style={[styles.card, {backgroundColor: "pink"}]}>
+      <View>
         <Text>{this.props.title}</Text>
         <Image
         style={{height: 250, width: 250, borderRadius: 75}}
@@ -28,7 +28,7 @@ class NoMoreCards extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{backgroundColor: "#94E1F2"}}>
         <Text style={styles.noMoreCardsText}>No More Recipes!</Text>
       </View>
     )

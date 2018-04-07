@@ -12,8 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{fontSize: 30,}}>Welcome To</Text>
-        <Image style={{height: 239, width: 230, marginLeft: 66}} source={require("./assets/icons/fridgely-icon.png")}/>
+        <Image style={{height: 239, width: 230, marginLeft: 66, marginTop: 30, marginBottom: 80}} source={require("./assets/icons/fridgely-icon.png")}/>
         <Button
           title="Get Started"
           onPress={() => this.props.navigation.navigate('Users')}
@@ -44,8 +43,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: '#85E4FF',
+    backgroundColor: '#94E1F2',
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "center",
   },
 })
