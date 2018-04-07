@@ -14,7 +14,7 @@ class App extends React.Component {
       <View style={styles.container}>
         <Button
           title="Get Started"
-          onPress={() => this.props.navigation.navigate('UserCamera')}
+          onPress={() => this.props.navigation.navigate('Users')}
           style={{fontSize: 30}}
         />
         <Text style={{fontSize: 30,}}>Welcome To</Text>

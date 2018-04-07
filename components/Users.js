@@ -1,10 +1,12 @@
 import React, { Component } from "react"
-import { StyleSheet, View, Text, Picker, TextInput, Button } from "react-native"
+import { StyleSheet, View, Text, Picker, TextInput, Button, Modal } from "react-native"
 
 export default  class Users extends Component {
     state = {
         users: [],
-        newUser: ""
+        newUser: {},
+        selectedUser: null,
+        visibleModal: true
     }
 
     componentDidMount = () => {
@@ -24,21 +26,15 @@ export default  class Users extends Component {
         })
     }
 
-    updateUser = () => {
-        this.setState({
-            newUser: value
-        })
-    }
-
     postUser = () => {
-        console.log(newUser)
+        let postedUser = this.state.newUser
         fetch("https://pure-meadow-62546.herokuapp.com/user", {
             method: "POST",
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({newUser})
+            body: JSON.stringify(postedUser)
         })
         .then(response => {
             return response.json()
@@ -48,22 +44,71 @@ export default  class Users extends Component {
         })
     }
 
+    deleteUser = (id) => {
+        fetch("https://pure-meadow-62546.herokuapp.com/user" + '/' + id, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+    }
+    
+    updateUser = value => {
+        this.setState({
+            newUser: {
+                userName: value,
+                recipes: '',
+                other: ''
+            }
+        })
+    }
+
+    ShowModalFunction(visible) {
+        this.setState({
+            visibleModal: visible
+        })
+    }
+
     render() {
-        console.log(this.state.users)
+        let yourUser = null
+
+        if(this.state.selectedUser !== null) {
+            yourUser = ( 
+                <Modal  
+                    visible={this.state.visibleModal} 
+                    animationType={'slide'}>
+                    <View style={{marginTop: 22}}>
+                        <Text>{this.state.selectedUser.userName}</Text>
+                    <Button
+                        title = "Go to Camera"
+                        onPress = {() => {this.props.navigation.navigate('UserCamera'), this.setState({visibleModal: false})} } />
+                    <Button
+                        title = "Cancel"
+                        onPress = { () => { this.setState({visibleModal: false})} } />
+                    </View>
+                </Modal>
+            )
+        }
         return (
             <View style={styles.container}>
+                <Text>Enter New User</Text>
                 <TextInput
                     style = {{borderColor: "black", borderWidth: 1}}
                     placeHolder = "Add User"
                     value={this.state.newUser}
                     onChangeText={this.updateUser}
-                    />
+                />
                 <Button
-                    title = "Submit"
+                    title = "Add User"
                     onPress = {this.postUser}
-                    />
-                <Picker style={{borderWidth: 1, borderColor: "black"}} selectedValue={this.state.users}>
-                    {this.state.users.map(user => <Picker.Item key={user} label= {user.userName} />)}
+                />
+                    {yourUser}
+                <Text>Choose Existing User</Text>
+                <Picker 
+                    style={{borderWidth: 1, borderColor: "black"}} 
+                    selectedValue={this.state.users}
+                    onValueChange={(user) => this.setState({selectedUser: user, visibleModal: true})}>
+                    {this.state.users
+                        .map(user => 
+                    <Picker.Item key={user} label= {user.userName} value={user} />)}
                 </Picker>
             </View>
         )
