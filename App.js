@@ -2,8 +2,12 @@ import React from "react"
 import { StyleSheet, Text, View, Button, Image } from "react-native"
 import Users from "./components/Users"
 import UserCamera from "./components/UserCamera"
+import Recipes from './components/Recipes'
 import { StackNavigator } from 'react-navigation'
 class App extends React.Component {
+  static navigationOptions = {
+    title: 'Home'
+  }
 
   render() {
     return (
@@ -29,6 +33,9 @@ export default StackNavigator ({
   },
   UserCamera: {
     screen: UserCamera
+  },
+  Recipes: {
+    screen: Recipes
   }
 })
 
@@ -41,4 +48,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
   },
-});
+})
