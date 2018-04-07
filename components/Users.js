@@ -78,9 +78,13 @@ export default class Users extends Component {
                     <View style={{marginTop: 22}}>
                         <Text>{this.state.selectedUser.userName}</Text>
                     <Button
-                        title = "Go to Camera"
-                        onPress = {() => {this.props.navigation.navigate('UserCamera'), this.setState({visibleModal: false})} } />
+                        title = "Send a Picture"
+                        onPress = {() => {this.props.navigation.navigate('UserCamera', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
                     <Button
+                        title = "Go to Existing Recipes"
+                        onPress = { () => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
+                    <Button
+                        style={{color: 'red'}}
                         title = "Cancel"
                         onPress = { () => { this.setState({visibleModal: false})} } />
                     </View>
