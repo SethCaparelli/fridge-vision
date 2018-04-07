@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Button, Image } from "react-native"
 import Users from "./components/Users"
 import UserCamera from "./components/UserCamera"
 import Recipes from './components/Recipes'
+import SavedRecipes from './components/SavedRecipes'
+
 import { StackNavigator } from 'react-navigation'
 class App extends React.Component {
   static navigationOptions = {
@@ -32,6 +34,9 @@ export default StackNavigator ({
   },
   UserCamera: {
     screen: UserCamera
+  },
+  SavedRecipes: {
+    screen: SavedRecipes
   },
   Recipes: {
     screen: Recipes

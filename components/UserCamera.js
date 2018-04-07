@@ -7,6 +7,9 @@ export default class UserCamera extends React.Component {
   static navigationOptions = {
     title: 'Camera',
   }
+  goToRecipes = () => {
+    return this.props.navigation.navigate('Recipes')
+  }
   takePic = () => {
     this.props.navigation.navigate('UserCamera')
     ImagePicker.showImagePicker({}, response => {
@@ -41,7 +44,8 @@ export default class UserCamera extends React.Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={this.takePic}>
+          onPress={this.takePic}
+          >
           <Text>Take Pic</Text>
         </TouchableOpacity>
         <Button
