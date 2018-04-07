@@ -16,7 +16,7 @@ class App extends React.Component {
         <Image style={{height: 239, width: 230, marginLeft: 66}} source={require("./assets/icons/fridgely-icon.png")}/>
         <Button
           title="Get Started"
-          onPress={() => this.props.navigation.navigate('UserCamera')}
+          onPress={() => this.props.navigation.navigate('Users')}
           style={{fontSize: 30}}
         />
       </View>
