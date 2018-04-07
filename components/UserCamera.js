@@ -8,11 +8,15 @@ export default class UserCamera extends React.Component {
     title: 'Camera',
     
   }
+  goToRecipes = () => {
+    return this.props.navigation.navigate('Recipes')
+  }
   takePic = () => {
     console.log("touched")
     ImagePicker.showImagePicker({}, response => {
       console.log(response)
       uploadImageAsync(response.uri)
+      goToRecipes()
       
     })
 
@@ -46,7 +50,8 @@ export default class UserCamera extends React.Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={this.takePic}>
+          onPress={this.takePic}
+          >
           <Text>Take Pic</Text>
         </TouchableOpacity>
         <Button 
