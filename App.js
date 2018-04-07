@@ -12,13 +12,13 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text style={{fontSize: 30,}}>Welcome To</Text>
+        <Image style={{height: 239, width: 230, marginLeft: 66}} source={require("./assets/icons/fridgely-icon.png")}/>
         <Button
           title="Get Started"
           onPress={() => this.props.navigation.navigate('Users')}
           style={{fontSize: 30}}
         />
-        <Text style={{fontSize: 30,}}>Welcome To</Text>
-        <Image style={{height: 239, width: 230, marginLeft: 66}} source={require("./assets/icons/fridgely-icon.png")}/>
       </View>
     );
   }
