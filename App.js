@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, Text, View, Button, Image } from "react-native"
-// import Users from "./components/Users"
+import Users from "./components/Users"
 import UserCamera from "./components/UserCamera"
 import { StackNavigator } from 'react-navigation'
 class App extends React.Component {
@@ -24,9 +24,9 @@ export default StackNavigator ({
   Home: {
     screen: App,
   },
-  // Users: {
-  //   screen: Users
-  // },
+  Users: {
+    screen: Users
+  },
   UserCamera: {
     screen: UserCamera
   }
