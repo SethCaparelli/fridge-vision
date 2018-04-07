@@ -12,12 +12,11 @@ class Ingredients extends Component {
             <FlatList
             data={this.state.ingredients}
             renderItem={(info) => (
-                <IngredientItem 
+                <IngredientItem
                 ingredientName={info.item.ingredients}
                 />
             )}
             >
-                
             </FlatList>
         )
     }
