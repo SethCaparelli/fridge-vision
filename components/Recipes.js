@@ -15,7 +15,6 @@ class Card extends React.Component {
     )
   }
 }
-
 class NoMoreCards extends Component {
   constructor(props) {
     super(props);
@@ -30,25 +29,25 @@ class NoMoreCards extends Component {
   }
 }
 
-export default class extends React.Component {
+export default class Recipes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: []
+      cards: []
     }
   }
 
-  getRecipes = () => {
-    fetch("https://pure-meadow-62546.herokuapp.com/cummy")
+  componentDidMount () {
+    fetch("https://pure-meadow-62546.herokuapp.com/recipe")
     .then(response => {
         // console.log(response)
         return response.json()
     })
     .then(recipes => {
         console.log(recipes)
-        // this.setState({
-        //     users: users.users
-        // })
+        this.setState({
+            cards: recipes
+        })
     })
     .catch(error => {
         console.log(error)
@@ -69,7 +68,7 @@ export default class extends React.Component {
     // stack={true}
     return (
       <SwipeCards
-        cards={this.state.recipes}
+        cards={this.state.cards}
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
 
