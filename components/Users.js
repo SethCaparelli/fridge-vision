@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { StyleSheet, View, Text, Picker, TextInput, Button, Modal } from "react-native"
 
-export default  class Users extends Component {
+export default class Users extends Component {
     state = {
         users: [],
         newUser: {},
@@ -50,7 +50,7 @@ export default  class Users extends Component {
         })
         .then(response => response.json())
     }
-    
+
     updateUser = value => {
         this.setState({
             newUser: {
@@ -71,9 +71,9 @@ export default  class Users extends Component {
         let yourUser = null
 
         if(this.state.selectedUser !== null) {
-            yourUser = ( 
-                <Modal  
-                    visible={this.state.visibleModal} 
+            yourUser = (
+                <Modal
+                    visible={this.state.visibleModal}
                     animationType={'slide'}>
                     <View style={{marginTop: 22}}>
                         <Text>{this.state.selectedUser.userName}</Text>
@@ -102,12 +102,12 @@ export default  class Users extends Component {
                 />
                     {yourUser}
                 <Text>Choose Existing User</Text>
-                <Picker 
-                    style={{borderWidth: 1, borderColor: "black"}} 
+                <Picker
+                    style={{borderWidth: 1, borderColor: "black"}}
                     selectedValue={this.state.users}
                     onValueChange={(user) => this.setState({selectedUser: user, visibleModal: true})}>
                     {this.state.users
-                        .map(user => 
+                        .map(user =>
                     <Picker.Item key={user} label= {user.userName} value={user} />)}
                 </Picker>
             </View>

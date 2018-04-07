@@ -6,7 +6,6 @@ import { StackNavigator } from 'react-navigation'
 export default class UserCamera extends React.Component {
   static navigationOptions = {
     title: 'Camera',
-    
   }
   goToRecipes = () => {
     return this.props.navigation.navigate('Recipes')
@@ -16,14 +15,12 @@ export default class UserCamera extends React.Component {
     ImagePicker.showImagePicker({}, response => {
       console.log(response)
       uploadImageAsync(response.uri)
-      goToRecipes()
-      
     })
 
 
     async function uploadImageAsync(uri) {
       console.log(uri)
-      let apiUrl = ''
+      let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
       let uriParts = uri.split('.');
       let fileType = uriParts[uriParts.length - 1]
       let formData = new FormData()
@@ -54,7 +51,7 @@ export default class UserCamera extends React.Component {
           >
           <Text>Take Pic</Text>
         </TouchableOpacity>
-        <Button 
+        <Button
       title= "Get Recipes"
         onPress={() => {this.props.navigation.navigate('Recipes')}}
         />

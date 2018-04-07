@@ -1,5 +1,7 @@
+
 import React, { Component } from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
+
 import SwipeCards from 'react-native-swipe-cards';
 
 class Card extends React.Component {
@@ -9,8 +11,11 @@ class Card extends React.Component {
 
   render() {
     return (
-      <View style={[styles.card, {backgroundColor: this.props.backgroundColor}]}>
-        <Text>{this.props.text}</Text>
+      <View style={[styles.card, {backgroundColor: "pink"}]}>
+        <Text>{this.props.title}</Text>
+        <Image
+        style={{height: 250, width: 250, borderRadius: 75}}
+        source={{uri: "https" + this.props.image_url.slice("4")}}/>
       </View>
     )
   }
@@ -24,35 +29,34 @@ class NoMoreCards extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.noMoreCardsText}>No more cards</Text>
+        <Text style={styles.noMoreCardsText}>No More Recipes!</Text>
       </View>
     )
   }
 }
 
-export default class extends React.Component {
+export default class Recipes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: []
+      cards: [{
+        text: "Fridgely",
+        image_url: ""
+      }]
     }
   }
 
-  getRecipes = () => {
-    fetch("https://pure-meadow-62546.herokuapp.com/cummy")
+  componentDidMount() {
+    fetch("https://pure-meadow-62546.herokuapp.com/recipe")
     .then(response => {
-        // console.log(response)
-        return response.json()
+      return response.json()
     })
     .then(recipes => {
-        console.log(recipes)
-        // this.setState({
-        //     users: users.users
-        // })
+      this.setState({
+        cards: recipes
+      })
     })
-    .catch(error => {
-        console.log(error)
-    })
+    .catch(error => console.log(error))
   }
 
   handleYup (card) {
@@ -69,12 +73,13 @@ export default class extends React.Component {
     // stack={true}
     return (
       <SwipeCards
-        cards={this.state.recipes}
+        cards={this.state.cards}
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
 
         handleYup={this.handleYup}
         handleNope={this.handleNope}
+        handleMaybe={this.handleMaybe}
       />
     )
   }
