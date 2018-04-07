@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, Text, View, Button, Image } from "react-native"
-import Users from "./components/Users"
-// import UserCamera from "./components/UserCamera"
+// import Users from "./components/Users"
+import UserCamera from "./components/UserCamera"
 import { StackNavigator } from 'react-navigation'
 import { Fonts } from "./src/utils/Fonts"
 class App extends React.Component {
@@ -13,7 +13,7 @@ class App extends React.Component {
         <Image style={{height: 239, width: 230, marginLeft: 66}} source={require("./assets/icons/fridgely-icon.png")}/>
         <Button
           title="Get Started"
-          onPress={() => this.props.navigation.navigate('Users')}
+          onPress={() => this.props.navigation.navigate('UserCamera')}
           style={{fontSize: 30}}
         />
       </View>
@@ -25,11 +25,11 @@ export default StackNavigator ({
   Home: {
     screen: App,
   },
-  // UserCamera: {
-  //   screen: UserCamera,
-  // }
-  Users: {
-    screen: Users
+  // Users: {
+  //   screen: Users
+  // },
+  UserCamera: {
+    screen: UserCamera
   }
 })
 

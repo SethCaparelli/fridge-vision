@@ -40,7 +40,7 @@ export default class UserCamera extends React.Component {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={this.takePic}>
-          <Text style={{fontFamily: "Market_Deco"}}>Take Pic</Text>
+          <Text>}Take Pic</Text>
         </TouchableOpacity>
       </View>
     )
