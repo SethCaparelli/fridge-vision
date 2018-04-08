@@ -67,16 +67,65 @@ export default class Recipes extends React.Component {
     })
     .catch(error => console.log(error))
   }
-
+  
   handleYup (card) {
-    console.log(`Yup for ${card.text}`)
+    
+    putRecipe = (newCard) => {
+      console.log(newCard)
+      let currentUser = this.props.navigation.state.params.currentUser
+      console.log(currentUser.recipes)
+      // let swipedRecipe = makeTheNewRecipe(newCard)
+      console.log(currentUser.id)
+      fetch("https://pure-meadow-62546.herokuapp.com/user/" + currentUser.id, {
+        method: 'PUT',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+      },
+        body: JSON.stringify({
+          id: currentUser.id,
+          userName: currentUser.userName,
+          recipes: currentUser.recipes + newCard,
+          other: ''
+        }).then(res => {
+          console.log(res.json())
+        })
+          .catch(err => {
+            console.log(err)
+          })
+      })
+    }
+
+    function makeTheNewRecipe(card) {
+      var newRecipe = ""
+      var cookingRecipeName = []
+      var recipeName = ""
+      var recipeID = card.recipe_id
+      cookingRecipeName = card.title.split(' ')
+      for (let i=0;i<cookingRecipeName.length;i++){
+        if (i===0) {
+          recipeName = cookingRecipeName[i]
+        } else  recipeName = recipeName + "_" + cookingRecipeName[i]
+      }
+      var recipePic = card.image_url
+      var recipeURL = ""
+      if (card.source_url.slice('4')[0] !== "s") {
+        recipeURL = "https" + card.source_url.slice('4')
+      }
+      newRecipe = "," + card.recipe_id + "$" + recipePic + "$" + recipeURL + "$" + recipeName
+      return putRecipe(newRecipe)
+    }
+    
   }
+
   handleNope (card) {
     console.log(`Nope for ${card.text}`)
   }
+
   handleMaybe (card) {
     console.log(`Maybe for ${card.text}`)
   }
+
   render() {
     return (
       <View style={{flex: 1, backgroundColor: "#85E4FF", justifyContent: "space-around", alignItems: "center"}}>

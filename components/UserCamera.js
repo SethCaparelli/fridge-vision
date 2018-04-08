@@ -19,12 +19,8 @@ export default class UserCamera extends React.Component {
     title: 'Camera',
   }
 
-  goToRecipes = () => {
-    return this.props.navigation.navigate('Recipes')
-  }
-
   takePic = () => {
-    // this.props.navigation.navigate('Recipes')
+    //this.props.navigation.navigate('Recipes', {})
     ImagePicker.showImagePicker({}, response => {
       uploadImageAsync(response.uri)
     })

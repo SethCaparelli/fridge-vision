@@ -24,7 +24,9 @@ class App extends React.Component {
       visible={this.state.visibleModal}
       animationType={'slide'}>>
           <View>
-              <Text>Fridgely is an image recognition app that allows you to take a picture of ingredients you already have and suggest recipes </Text>
+              <Text
+              style={{marginTop: 22}}
+              >Fridgely is an image recognition app that allows you to take a picture of your fridge or pantry's contents and suggests recipes based on ingredients you already have!</Text>
               <Button 
               title = "Cancel"
               onPress = { () => { this.setState({visibleModal: false})} } />
