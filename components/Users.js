@@ -7,16 +7,22 @@ import {
     TextInput,
     Button,
     Modal,
-    Image
+    Image,
+    TouchableHighlight
 } from "react-native"
+import { StackNavigator } from 'react-navigation'
+
 
 export default class Users extends Component {
     state = {
         users: [],
         newUser: {},
         selectedUser: null,
+<<<<<<< HEAD
         visibleModal: true,
         updateUser: ""
+=======
+>>>>>>> 3477f1bf7f5b1e3d89f04630343dc56bdc5c146b
     }
 
     componentDidMount = () => {
@@ -52,18 +58,20 @@ export default class Users extends Component {
         })
         .then(response => {
             return response.json()
+        }).then(fetch("https://pure-meadow-62546.herokuapp.com/user")
+        .then(response => {
+            return response.json()
+        })
+        .then(users => {
+            this.setState({
+                users: users.users
+            })
         })
         .catch(error => {
             console.log(error)
-        })
+        }))
     }
 
-    deleteUser = (id) => {
-        fetch("https://pure-meadow-62546.herokuapp.com/user" + '/' + id, {
-            method: 'DELETE'
-        })
-        .then(response => response.json())
-    }
 
     updateUser = value => {
         this.setState({
@@ -75,17 +83,17 @@ export default class Users extends Component {
         })
     }
 
-    ShowModalFunction(visible) {
-        this.setState({
-            visibleModal: visible
-        })
+    pickerChangeHandler = (user) => {
+        this.setState({selectedUser: user})
     }
+   
+
 
     render() {
         let yourUser = null
-
-        if(this.state.selectedUser !== null) {
+        if(this.state.selectedUser !== null){
             yourUser = (
+<<<<<<< HEAD
                 <Modal
                     visible={this.state.visibleModal}
                     animationType={'slide'}>
@@ -106,6 +114,11 @@ export default class Users extends Component {
                             onPress = { () => { this.setState({visibleModal: false})} } />
                     </View>
                 </Modal>
+=======
+                <Button 
+                title="Next"
+                onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.state.selectedUser})}/>
+>>>>>>> 3477f1bf7f5b1e3d89f04630343dc56bdc5c146b
             )
         }
         return (
@@ -115,17 +128,18 @@ export default class Users extends Component {
                     <Text style={{fontSize: 30, fontWeight: "700"}}>SIGN IN</Text>
                 </View>
                 <View>
-                        {yourUser}
+                    
                     <View style={{flexDirection: "column", alignItems: "center"}}>
                         <Text style={styles.label}>Existing User</Text>
                         <Picker
                             style={{borderWidth: 1, borderColor: "black", width: 200}}
                             selectedValue={this.state.users}
-                            onValueChange={(user) => this.setState({selectedUser: user, visibleModal: true})}>
+                            onValueChange={this.pickerChangeHandler}>
                             {this.state.users
                                 .map(user =>
                             <Picker.Item key={user} label= {user.userName} value={user} />)}
                         </Picker>
+                        {yourUser}
                     </View>
                 </View>
                 <Text>-OR-</Text>

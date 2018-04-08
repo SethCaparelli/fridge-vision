@@ -1,17 +1,37 @@
 import React from "react"
-import { StyleSheet, Text, View, Button, Image } from "react-native"
+import { StyleSheet, Text, View, Button, Image, TouchableHighlight, Modal } from "react-native"
+import { Icon } from 'react-native-elements'
 import Users from "./components/Users"
 import UserCamera from "./components/UserCamera"
 import Recipes from './components/Recipes'
 import SavedRecipes from './components/SavedRecipes'
+import NavigationTree from './components/NavigationTree'
+
 
 import { StackNavigator } from 'react-navigation'
+
 class App extends React.Component {
   static navigationOptions = {
     title: 'Home'
   }
+  state = {
+    visibleModal: false
+  }
 
   render() {
+    let modalContent = (
+      <Modal 
+      visible={this.state.visibleModal}
+      animationType={'slide'}>>
+          <View>
+              <Text>Fridgely is an image recognition app that allows you to take a picture of ingredients you already have and suggest recipes </Text>
+              <Button 
+              title = "Cancel"
+              onPress = { () => { this.setState({visibleModal: false})} } />
+          </View>
+      </Modal>
+  )
+
     return (
       <View style={styles.container}>
         <Image style={{height: 239, width: 230, marginLeft: 66, marginTop: 30, marginBottom: 80}} source={require("./assets/icons/fridgely-icon.png")}/>
@@ -20,6 +40,11 @@ class App extends React.Component {
           onPress={() => this.props.navigation.navigate('Users')}
           style={{fontSize: 30}}
         />
+        <TouchableHighlight
+        onPress={() => this.setState({visibleModal: true})}>
+        <Text>Info</Text>
+        </TouchableHighlight>
+        {modalContent}
       </View>
     );
   }
@@ -40,6 +65,9 @@ export default StackNavigator ({
   },
   Recipes: {
     screen: Recipes
+  },
+  NavigationTree: {
+    screen: NavigationTree
   }
 })
 
