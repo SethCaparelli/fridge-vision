@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, Picker, TextInput, Button, Modal, Image, Scroll
 import { Card, ListItem } from 'react-native-elements'
 
 export default class SavedRecipes extends Component {
-    
     render(){
         let userSavedRecipes = this.props.navigation.state.params.currentUser.recipes
         function breakUpUrl(rawRecipe){
@@ -28,16 +27,17 @@ export default class SavedRecipes extends Component {
             console.log(finalRecipeArray)
             return finalRecipeArray
           }
-          
         return(
             <ScrollView>
             {
             breakUpUrl(userSavedRecipes).map((current, index) => {
                 let url = current.url
                 return (
-                    <Card title={current.title}>
+                    <Card
+                    title={current.title}>
                         <View key={index} >
                         <TouchableHighlight
+                        style={{justifyContent: "center", alignItems: "center"}}
                         onPress={() => Linking.openURL(url)}>
                         <Image
                             source={{uri: current.image}}

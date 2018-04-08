@@ -15,7 +15,8 @@ export default class Users extends Component {
         users: [],
         newUser: {},
         selectedUser: null,
-        visibleModal: true
+        visibleModal: true,
+        updateUser: ""
     }
 
     componentDidMount = () => {
@@ -100,7 +101,7 @@ export default class Users extends Component {
                             title = "Go to Existing Recipes"
                             onPress = { () => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
                         <Button
-                            style={{color: 'red'}}
+                            style={{backgroundColor: 'red'}}
                             title = "Cancel"
                             onPress = { () => { this.setState({visibleModal: false})} } />
                     </View>
@@ -127,6 +128,7 @@ export default class Users extends Component {
                         </Picker>
                     </View>
                 </View>
+                <Text>-OR-</Text>
                 <View style={{flex: 0.7}}>
                     <View style={styles.newUser}>
                         <Text style={styles.label}>New User</Text>

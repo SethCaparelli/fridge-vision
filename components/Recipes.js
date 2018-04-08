@@ -1,21 +1,24 @@
 
 import React, { Component } from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
-
-import SwipeCards from 'react-native-swipe-cards';
+import {StyleSheet, Text, View, Image, TouchableOpacity, Linking} from 'react-native'
+import { StackNavigator } from "react-navigation"
+import SwipeCards from 'react-native-swipe-cards'
+import SavedRecipes from "./SavedRecipes"
 
 class Card extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
-      <View>
-        <Text>{this.props.title}</Text>
-        <Image
-        style={{height: 250, width: 250, borderRadius: 75}}
-        source={{uri: "https" + this.props.image_url.slice("4")}}/>
+      <View style={{justifyContent: "center", alignItems: "center"}}>
+        <View style={{width: 250, justifyContent: "center", alignItems: "center"}}>
+          <Text style={{fontWeight: "600", fontSize: 20}}>{this.props.title}</Text>
+        </View>
+        <TouchableOpacity
+          onPress={() => Linking.openURL(this.props.source_url)}>
+          <Image
+          style={{height: 250, width: 250, borderRadius: 75}}
+          source={{uri: "https" + this.props.image_url.slice("4")}}/>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -23,13 +26,17 @@ class Card extends React.Component {
 
 class NoMoreCards extends Component {
   constructor(props) {
-    super(props);
+    super(props)
+
   }
 
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: "#94E1F2"}}>
-        <Text style={styles.noMoreCardsText}>No More Recipes!</Text>
+      <View style={{flex: 1}}>
+        <TouchableOpacity
+          onPress={() => {this.props.navigation.navigate('SavedRecipes')} }>
+          <Text style={styles.noMoreCardsText}>See Your Recipes!</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -52,6 +59,7 @@ export default class Recipes extends React.Component {
       return response.json()
     })
     .then(recipes => {
+      console.log(recipes)
       this.setState({
         cards: recipes
       })
@@ -69,18 +77,18 @@ export default class Recipes extends React.Component {
     console.log(`Maybe for ${card.text}`)
   }
   render() {
-    // If you want a stack of cards instead of one-per-one view, activate stack mode
-    // stack={true}
     return (
-      <SwipeCards
-        cards={this.state.cards}
-        renderCard={(cardData) => <Card {...cardData} />}
-        renderNoMoreCards={() => <NoMoreCards />}
-
-        handleYup={this.handleYup}
-        handleNope={this.handleNope}
-        handleMaybe={this.handleMaybe}
-      />
+      <View style={{flex: 1, backgroundColor: "#85E4FF", justifyContent: "space-around", alignItems: "center"}}>
+        <Image style={{ height: 72, width: 70}} source={require("../assets/icons/fridgely-icon.png")}/>
+        <SwipeCards
+          cards={this.state.cards}
+          renderCard={(cardData) => <Card {...cardData} />}
+          renderNoMoreCards={() => <NoMoreCards />}
+          handleYup={this.handleYup}
+          handleNope={this.handleNope}
+          handleMaybe={this.handleMaybe}
+        />
+      </View>
     )
   }
 }

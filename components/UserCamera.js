@@ -11,14 +11,20 @@ import ImagePicker from "react-native-image-picker"
 import { StackNavigator } from 'react-navigation'
 
 export default class UserCamera extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   static navigationOptions = {
     title: 'Camera',
   }
+
   goToRecipes = () => {
     return this.props.navigation.navigate('Recipes')
   }
+
   takePic = () => {
-    this.props.navigation.navigate('UserCamera')
+    // this.props.navigation.navigate('Recipes')
     ImagePicker.showImagePicker({}, response => {
       uploadImageAsync(response.uri)
     })
@@ -59,7 +65,7 @@ export default class UserCamera extends React.Component {
         </TouchableOpacity>
         <Button
         title= "Get Recipes"
-        onPress={() => {this.props.navigation.navigate('Recipes')}}
+        onPress={() => {this.props.navigation.navigate('Recipes', {navigation: this.props.navigation}, {currentUser: this.props.currentUser})}}
         />
       </View>
     )
