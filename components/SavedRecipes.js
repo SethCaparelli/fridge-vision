@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { StyleSheet, View, Text, Picker, TextInput, Button, Modal, Image } from "react-native"
+import { StyleSheet, View, Text, Picker, TextInput, Button, Modal, Image, ScrollView, TouchableHighlight, Linking } from "react-native"
 import { Card, ListItem } from 'react-native-elements'
 
 export default class SavedRecipes extends Component {
@@ -30,20 +30,26 @@ export default class SavedRecipes extends Component {
           }
           
         return(
-            <Card title="recipe">
+            <ScrollView>
             {
-                breakUpUrl(userSavedRecipes).map((current, index) => {
-                    return (
+            breakUpUrl(userSavedRecipes).map((current, index) => {
+                let url = current.url
+                return (
+                    <Card title={current.title}>
                         <View key={index} >
+                        <TouchableHighlight
+                        onPress={() => Linking.openURL(url)}>
                         <Image
-                            
+                            source={{uri: current.image}}
+                            style={{height: 250, width: 250, borderRadius: 75}}
                         />
-                        <Text>{current.title}</Text>
+                        </TouchableHighlight>
                         </View>
-                    )
-                })
-            }
-            </Card>
+                    </Card>
+                )
+            })
+        }
+        </ScrollView>
         )
     }
 }
