@@ -28,7 +28,7 @@ class NoMoreCards extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: "#94E1F2"}}>
+      <View style={{flex: 1, backgroundColor: "#94E1F2"}}>
         <Text style={styles.noMoreCardsText}>No More Recipes!</Text>
       </View>
     )

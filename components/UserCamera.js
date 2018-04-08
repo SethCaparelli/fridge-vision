@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+  Image
+} from 'react-native';
 import ImagePicker from "react-native-image-picker"
 import { StackNavigator } from 'react-navigation'
 
@@ -43,7 +50,9 @@ export default class UserCamera extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image style={styles.icon} source={require("../assets/icons/camera-icon.png")}/>
         <TouchableOpacity
+          style={styles.picButton}
           onPress={this.takePic}
           >
           <Text>Take Pic</Text>
@@ -62,6 +71,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#85E4FF',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
+  icon: {
+    height: 60,
+    width: 60,
+  },
+  pickButton: {
+    height: 100,
+    width: 100,
+    borderRadius: 100,
+    backgroundColor: "red",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
 })

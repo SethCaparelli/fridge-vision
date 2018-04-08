@@ -1,5 +1,14 @@
 import React, { Component } from "react"
-import { StyleSheet, View, Text, Picker, TextInput, Button, Modal } from "react-native"
+import {
+    StyleSheet,
+    View,
+    Text,
+    Picker,
+    TextInput,
+    Button,
+    Modal,
+    Image
+} from "react-native"
 
 export default class Users extends Component {
     state = {
@@ -26,7 +35,11 @@ export default class Users extends Component {
         })
     }
 
-    postUser = () => {
+    postUser = (user) => {
+        this.setState({
+            selectedUser: user,
+            visibleModal: true
+        })
         let postedUser = this.state.newUser
         fetch("https://pure-meadow-62546.herokuapp.com/user", {
             method: "POST",
@@ -75,52 +88,59 @@ export default class Users extends Component {
                 <Modal
                     visible={this.state.visibleModal}
                     animationType={'slide'}>
-                    <View style={{marginTop: 22}}>
-                        <Text>{this.state.selectedUser.userName}</Text>
-                    <Button
-                        title = "Send a Picture"
-                        onPress = {() => {this.props.navigation.navigate('UserCamera', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
-                    <Button
-                        title = "Go to Existing Recipes"
-                        onPress = { () => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
-                    <Button
-                        style={{color: 'red'}}
-                        title = "Cancel"
-                        onPress = { () => { this.setState({visibleModal: false})} } />
+                    <View style={styles.modal}>
+                        <View style={{flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+                            <Image style={styles.icon} source={require("../assets/icons/fridgely-icon.png")}/>
+                            <Text style={{fontSize: 30}}>{this.state.selectedUser.userName}</Text>
+                        </View>
+                        <Button
+                            title = "Send a Picture"
+                            onPress = {() => {this.props.navigation.navigate('UserCamera', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
+                        <Button
+                            title = "Go to Existing Recipes"
+                            onPress = { () => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
+                        <Button
+                            style={{color: 'red'}}
+                            title = "Cancel"
+                            onPress = { () => { this.setState({visibleModal: false})} } />
                     </View>
                 </Modal>
             )
         }
         return (
             <View style={styles.container}>
+                <View style={{flexDirection: "column", alignItems: "center"}}>
+                    <Image style={{height: 60, width: 60}} source={require("../assets/icons/user-icon.png")}/>
+                    <Text style={{fontSize: 30, fontWeight: "700"}}>SIGN IN</Text>
+                </View>
                 <View>
                         {yourUser}
-                    <Text>Choose Existing User</Text>
-                    <Picker
-                        style={{borderWidth: 1, borderColor: "black", width: 300}}
-                        selectedValue={this.state.users}
-                        onValueChange={(user) => this.setState({selectedUser: user, visibleModal: true})}>
-                        {this.state.users
-                            .map(user =>
-                        <Picker.Item key={user} label= {user.userName} value={user} />)}
-                    </Picker>
+                    <View style={{flexDirection: "column", alignItems: "center"}}>
+                        <Text style={styles.label}>Existing User</Text>
+                        <Picker
+                            style={{borderWidth: 1, borderColor: "black", width: 200}}
+                            selectedValue={this.state.users}
+                            onValueChange={(user) => this.setState({selectedUser: user, visibleModal: true})}>
+                            {this.state.users
+                                .map(user =>
+                            <Picker.Item key={user} label= {user.userName} value={user} />)}
+                        </Picker>
+                    </View>
                 </View>
-                <View style={styles.newUser}>
-                    <View>
-                        <Text>Enter New User</Text>
+                <View style={{flex: 0.7}}>
+                    <View style={styles.newUser}>
+                        <Text style={styles.label}>New User</Text>
                         <TextInput
-                            style = {{flex: 1, borderColor: "black", borderWidth: 1, width: 200}}
+                            style = {{ borderColor: "black", borderWidth: 1, width: 200}}
                             placeHolder = "Add User"
                             value={this.state.newUser}
                             onChangeText={this.updateUser}
                         />
                     </View>
-                    <View style={{flexDirection: "column", justifyContent: "flex-end"}}>
-                        <Button
-                            title = "Add User"
-                            onPress = {this.postUser}
-                        />
-                    </View>
+                    <Button
+                        title = "Add User"
+                        onPress = {this.postUser}
+                    />
                 </View>
             </View>
         )
@@ -136,8 +156,25 @@ const styles = StyleSheet.create({
         backgroundColor: "#94E1F2"
     },
     newUser: {
-        flex: 0.1,
-        flexDirection: "row",
-        alignItems: "flex-end"
+        flex: 0.3,
+        flexDirection: "column",
+        alignItems: "center",
+        marginTop: "auto"
+    },
+    icon: {
+        height: 72,
+        width: 70,
+      },
+    modal: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-around",
+        alignItems: "center",
+        backgroundColor: "#94E1F2",
+        marginTop: 22
+    },
+    label: {
+        fontSize: 20,
+        fontWeight: "600"
     }
 })
