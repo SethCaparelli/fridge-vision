@@ -7,15 +7,17 @@ import {
     TextInput,
     Button,
     Modal,
-    Image
+    Image,
+    TouchableHighlight
 } from "react-native"
+import { StackNavigator } from 'react-navigation'
+
 
 export default class Users extends Component {
     state = {
         users: [],
         newUser: {},
         selectedUser: null,
-        visibleModal: true
     }
 
     componentDidMount = () => {
@@ -51,18 +53,20 @@ export default class Users extends Component {
         })
         .then(response => {
             return response.json()
+        }).then(fetch("https://pure-meadow-62546.herokuapp.com/user")
+        .then(response => {
+            return response.json()
+        })
+        .then(users => {
+            this.setState({
+                users: users.users
+            })
         })
         .catch(error => {
             console.log(error)
-        })
+        }))
     }
 
-    deleteUser = (id) => {
-        fetch("https://pure-meadow-62546.herokuapp.com/user" + '/' + id, {
-            method: 'DELETE'
-        })
-        .then(response => response.json())
-    }
 
     updateUser = value => {
         this.setState({
@@ -74,37 +78,19 @@ export default class Users extends Component {
         })
     }
 
-    ShowModalFunction(visible) {
-        this.setState({
-            visibleModal: visible
-        })
+    pickerChangeHandler = (user) => {
+        this.setState({selectedUser: user})
     }
+   
+
 
     render() {
         let yourUser = null
-
-        if(this.state.selectedUser !== null) {
+        if(this.state.selectedUser !== null){
             yourUser = (
-                <Modal
-                    visible={this.state.visibleModal}
-                    animationType={'slide'}>
-                    <View style={styles.modal}>
-                        <View style={{flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
-                            <Image style={styles.icon} source={require("../assets/icons/fridgely-icon.png")}/>
-                            <Text style={{fontSize: 30}}>{this.state.selectedUser.userName}</Text>
-                        </View>
-                        <Button
-                            title = "Send a Picture"
-                            onPress = {() => {this.props.navigation.navigate('UserCamera', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
-                        <Button
-                            title = "Go to Existing Recipes"
-                            onPress = { () => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
-                        <Button
-                            style={{color: 'red'}}
-                            title = "Cancel"
-                            onPress = { () => { this.setState({visibleModal: false})} } />
-                    </View>
-                </Modal>
+                <Button 
+                title="Next"
+                onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.state.selectedUser})}/>
             )
         }
         return (
@@ -114,17 +100,18 @@ export default class Users extends Component {
                     <Text style={{fontSize: 30, fontWeight: "700"}}>SIGN IN</Text>
                 </View>
                 <View>
-                        {yourUser}
+                    
                     <View style={{flexDirection: "column", alignItems: "center"}}>
                         <Text style={styles.label}>Existing User</Text>
                         <Picker
                             style={{borderWidth: 1, borderColor: "black", width: 200}}
                             selectedValue={this.state.users}
-                            onValueChange={(user) => this.setState({selectedUser: user, visibleModal: true})}>
+                            onValueChange={this.pickerChangeHandler}>
                             {this.state.users
                                 .map(user =>
                             <Picker.Item key={user} label= {user.userName} value={user} />)}
                         </Picker>
+                        {yourUser}
                     </View>
                 </View>
                 <View style={{flex: 0.7}}>
