@@ -65,7 +65,7 @@ export default class UserCamera extends React.Component {
         </TouchableOpacity>
         <Button
         title= "Get Recipes"
-        onPress={() => {this.props.navigation.navigate('Recipes', {navigation: this.props.navigation}, {currentUser: this.props.currentUser})}}
+        onPress={() => {this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser})}}
         />
       </View>
     )

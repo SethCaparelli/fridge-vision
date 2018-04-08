@@ -34,7 +34,7 @@ class NoMoreCards extends Component {
     return (
       <View style={{flex: 1}}>
         <TouchableOpacity
-          onPress={() => {this.props.navigation.navigate('SavedRecipes')} }>
+          onPress={() => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.props.currentUser})} }>
           <Text style={styles.noMoreCardsText}>See Your Recipes!</Text>
         </TouchableOpacity>
       </View>
@@ -49,7 +49,8 @@ export default class Recipes extends React.Component {
       cards: [{
         text: "Fridgely",
         image_url: ""
-      }]
+      }],
+      currentUser: this.props.navigation.state.params.currentUser
     }
   }
 
@@ -79,11 +80,14 @@ export default class Recipes extends React.Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: "#85E4FF", justifyContent: "space-around", alignItems: "center"}}>
-        <Image style={{ height: 72, width: 70}} source={require("../assets/icons/fridgely-icon.png")}/>
+        <View>
+          <Image style={{ height: 72, width: 70}} source={require("../assets/icons/fridgely-icon.png")}/>
+        </View>
         <SwipeCards
+          currentUser={this.state.currentUser}
           cards={this.state.cards}
           renderCard={(cardData) => <Card {...cardData} />}
-          renderNoMoreCards={() => <NoMoreCards />}
+          renderNoMoreCards={() => <NoMoreCards currentUser={this.props.currentUser} navigation={this.props.navigation} />}
           handleYup={this.handleYup}
           handleNope={this.handleNope}
           handleMaybe={this.handleMaybe}

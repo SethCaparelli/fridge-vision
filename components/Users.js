@@ -81,14 +81,14 @@ export default class Users extends Component {
     pickerChangeHandler = (user) => {
         this.setState({selectedUser: user})
     }
-   
+
 
 
     render() {
         let yourUser = null
         if(this.state.selectedUser !== null){
             yourUser = (
-                <Button 
+                <Button
                 title="Next"
                 onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.state.selectedUser})}/>
             )
@@ -100,7 +100,6 @@ export default class Users extends Component {
                     <Text style={{fontSize: 30, fontWeight: "700"}}>SIGN IN</Text>
                 </View>
                 <View>
-                    
                     <View style={{flexDirection: "column", alignItems: "center"}}>
                         <Text style={styles.label}>Existing User</Text>
                         <Picker
