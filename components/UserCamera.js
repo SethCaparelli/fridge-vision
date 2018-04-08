@@ -19,12 +19,8 @@ export default class UserCamera extends React.Component {
     title: 'Camera',
   }
 
-  goToRecipes = () => {
-    return this.props.navigation.navigate('Recipes')
-  }
-
   takePic = () => {
-    // this.props.navigation.navigate('Recipes')
+    //this.props.navigation.navigate('Recipes', {})
     ImagePicker.showImagePicker({}, response => {
       uploadImageAsync(response.uri)
     })
@@ -65,7 +61,7 @@ export default class UserCamera extends React.Component {
         </TouchableOpacity>
         <Button
         title= "Get Recipes"
-        onPress={() => {this.props.navigation.navigate('Recipes', {navigation: this.props.navigation}, {currentUser: this.props.currentUser})}}
+        onPress={() => {this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser})}}
         />
       </View>
     )

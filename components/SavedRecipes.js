@@ -7,7 +7,7 @@ export default class SavedRecipes extends Component {
         let userSavedRecipes = this.props.navigation.state.params.currentUser.recipes
         function breakUpUrl(rawRecipe){
             var finalRecipeArray = []
-            for (var i = 0; i < rawRecipe.split(',').length-1; i++) {
+            for (var i = 0; i < rawRecipe.split(',').length; i++) {
               var halfCookedRecipe = rawRecipe.split(',')[i]
               var doneRecipe = halfCookedRecipe.split('$')
               var secureImage = 'https' + doneRecipe[1].slice('4')
