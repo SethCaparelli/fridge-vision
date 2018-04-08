@@ -18,11 +18,6 @@ export default class Users extends Component {
         users: [],
         newUser: {},
         selectedUser: null,
-<<<<<<< HEAD
-        visibleModal: true,
-        updateUser: ""
-=======
->>>>>>> 3477f1bf7f5b1e3d89f04630343dc56bdc5c146b
     }
 
     componentDidMount = () => {
@@ -93,32 +88,9 @@ export default class Users extends Component {
         let yourUser = null
         if(this.state.selectedUser !== null){
             yourUser = (
-<<<<<<< HEAD
-                <Modal
-                    visible={this.state.visibleModal}
-                    animationType={'slide'}>
-                    <View style={styles.modal}>
-                        <View style={{flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
-                            <Image style={styles.icon} source={require("../assets/icons/fridgely-icon.png")}/>
-                            <Text style={{fontSize: 30}}>{this.state.selectedUser.userName}</Text>
-                        </View>
-                        <Button
-                            title = "Send a Picture"
-                            onPress = {() => {this.props.navigation.navigate('UserCamera', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
-                        <Button
-                            title = "Go to Existing Recipes"
-                            onPress = { () => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.state.selectedUser}), this.setState({visibleModal: false})} } />
-                        <Button
-                            style={{backgroundColor: 'red'}}
-                            title = "Cancel"
-                            onPress = { () => { this.setState({visibleModal: false})} } />
-                    </View>
-                </Modal>
-=======
                 <Button 
                 title="Next"
                 onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.state.selectedUser})}/>
->>>>>>> 3477f1bf7f5b1e3d89f04630343dc56bdc5c146b
             )
         }
         return (

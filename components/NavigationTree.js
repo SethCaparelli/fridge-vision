@@ -36,7 +36,7 @@ render() {
             title = "Go to Existing Recipes"
             onPress = { () => {this.props.navigation.navigate('SavedRecipes', {currentUser: currentUser})} } />
         <Button
-            style={{color: 'red'}}
+            style={{fontColor: 'red'}}
             title = "Delete User"
             onPress = { () => this.deleteUser(userId)} />
     </View>
