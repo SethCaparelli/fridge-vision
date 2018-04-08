@@ -94,29 +94,33 @@ export default class Users extends Component {
         return (
             <View style={styles.container}>
                 <View>
-                    <Text>Enter New User</Text>
-                    <TextInput
-                        style = {{borderColor: "black", borderWidth: 1}}
-                        placeHolder = "Add User"
-                        value={this.state.newUser}
-                        onChangeText={this.updateUser}
-                    />
-                    <Button
-                        title = "Add User"
-                        onPress = {this.postUser}
-                    />
-                </View>
-                <View>
                         {yourUser}
                     <Text>Choose Existing User</Text>
                     <Picker
-                        style={{borderWidth: 1, borderColor: "black"}}
+                        style={{borderWidth: 1, borderColor: "black", width: 300}}
                         selectedValue={this.state.users}
                         onValueChange={(user) => this.setState({selectedUser: user, visibleModal: true})}>
                         {this.state.users
                             .map(user =>
                         <Picker.Item key={user} label= {user.userName} value={user} />)}
                     </Picker>
+                </View>
+                <View style={styles.newUser}>
+                    <View>
+                        <Text>Enter New User</Text>
+                        <TextInput
+                            style = {{flex: 1, borderColor: "black", borderWidth: 1, width: 200}}
+                            placeHolder = "Add User"
+                            value={this.state.newUser}
+                            onChangeText={this.updateUser}
+                        />
+                    </View>
+                    <View style={{flexDirection: "column", justifyContent: "flex-end"}}>
+                        <Button
+                            title = "Add User"
+                            onPress = {this.postUser}
+                        />
+                    </View>
                 </View>
             </View>
         )
@@ -127,8 +131,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "space-around",
         alignItems: "center",
         backgroundColor: "#94E1F2"
+    },
+    newUser: {
+        flex: 0.1,
+        flexDirection: "row",
+        alignItems: "flex-end"
     }
 })
