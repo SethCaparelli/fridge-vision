@@ -36,7 +36,8 @@ class NoMoreCards extends Component {
     return (
       <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
         <TouchableOpacity
-          onPress={() => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.props.navigation.state.params.currentUser})} }>
+          style={styles.buttonStyle}
+          onPress={() => {this.props.navigation.navigate('NavigationTree', {currentUser: this.props.navigation.state.params.currentUser})} }>
           <Text style={styles.noMoreCardsText}>See Your Recipes!</Text>
         </TouchableOpacity>
       </View>
@@ -144,5 +145,18 @@ const styles = StyleSheet.create({
   },
   noMoreCardsText: {
     fontSize: 22,
-  }
+    color: "white"
+  },
+  buttonStyle: {
+    backgroundColor: "#9B489B",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 200,
+    height: 40,
+    borderColor: "transparent",
+    color: 'white',
+    borderWidth: 0,
+    borderRadius: 5,
+    marginTop: 10
+}
 })
