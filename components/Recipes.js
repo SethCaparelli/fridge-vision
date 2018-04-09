@@ -53,19 +53,6 @@ export default class Recipes extends React.Component {
     }
   }
 
-  componentDidMount() {
-    fetch("https://pure-meadow-62546.herokuapp.com/recipe")
-    .then(response => {
-      return response.json()
-    })
-    .then(recipes => {
-        this.setState({
-          cards: recipes
-        })
-    })
-    .catch(error => console.log(error))
-  }
-
   handleYup = (card) => {
     var newRecipe = ""
     var cookingRecipeName = []
@@ -84,12 +71,13 @@ export default class Recipes extends React.Component {
     }
     newRecipe =  card.recipe_id + "$" + recipePic + "$" + recipeURL + "$" + recipeName + ","
     let currentUser = this.props.navigation.state.params.currentUser
+    console.log(currentUser)
     fetch("https://pure-meadow-62546.herokuapp.com/user/" + currentUser.id, {
       method: 'PUT',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-    },
+      },
       body: JSON.stringify({
         id: currentUser.id,
         userName: currentUser.userName,
