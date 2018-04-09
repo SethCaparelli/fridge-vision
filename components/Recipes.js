@@ -38,7 +38,7 @@ class NoMoreCards extends Component {
         <TouchableOpacity
           style={styles.buttonStyle}
           onPress={() => {this.props.navigation.navigate('NavigationTree', {currentUser: this.props.navigation.state.params.currentUser})} }>
-          <Text style={styles.noMoreCardsText}>See Your Recipes!</Text>
+          <Text style={styles.noMoreCardsText}>Go To Profile</Text>
         </TouchableOpacity>
       </View>
     )
