@@ -23,6 +23,7 @@ class Card extends React.Component {
     )
   }
 }
+// ==============================================BREAK===========================================================
 
 class NoMoreCards extends Component {
   constructor(props) {
@@ -34,14 +35,14 @@ class NoMoreCards extends Component {
     return (
       <View style={{flex: 1}}>
         <TouchableOpacity
-          onPress={() => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.props.currentUser})} }>
+          onPress={() => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.props.navigation.state.params.currentUser})} }>
           <Text style={styles.noMoreCardsText}>See Your Recipes!</Text>
         </TouchableOpacity>
       </View>
     )
   }
 }
-
+// ==============================================BREAK===========================================================
 export default class Recipes extends React.Component {
   constructor(props) {
     super(props);
@@ -67,63 +68,47 @@ export default class Recipes extends React.Component {
     })
     .catch(error => console.log(error))
   }
-  
-  handleYup (card) {
-    
-    putRecipe = (newCard) => {
-      console.log(newCard)
-      let currentUser = this.props.navigation.state.params.currentUser
-      console.log(currentUser.recipes)
-      // let swipedRecipe = makeTheNewRecipe(newCard)
-      console.log(currentUser.id)
-      fetch("https://pure-meadow-62546.herokuapp.com/user/" + currentUser.id, {
-        method: 'PUT',
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-      },
-        body: JSON.stringify({
-          id: currentUser.id,
-          userName: currentUser.userName,
-          recipes: currentUser.recipes + newCard,
-          other: ''
-        }).then(res => {
-          console.log(res.json())
-        })
-          .catch(err => {
-            console.log(err)
-          })
+
+  handleYup = (card) => {
+    var newRecipe = ""
+    var cookingRecipeName = []
+    var recipeName = ""
+    var recipeID = card.recipe_id
+    cookingRecipeName = card.title.split(' ')
+    for (let i=0;i<cookingRecipeName.length;i++){
+      if (i===0) {
+        recipeName = cookingRecipeName[i]
+      } else  recipeName = recipeName + "_" + cookingRecipeName[i]
+    }
+    var recipePic = card.image_url
+    var recipeURL = ""
+    if (card.source_url.slice('4')[0] !== "s") {
+      recipeURL = "https" + card.source_url.slice('4')
+    }
+    newRecipe = "," + card.recipe_id + "$" + recipePic + "$" + recipeURL + "$" + recipeName
+    let currentUser = this.props.navigation.state.params.currentUser
+    fetch("https://pure-meadow-62546.herokuapp.com/user/" + currentUser.id, {
+      method: 'PUT',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    },
+      body: JSON.stringify({
+        id: currentUser.id,
+        userName: currentUser.userName,
+        recipes: newRecipe + currentUser.recipes ,
+        created_at: null,
+        updated_at: null,
+        other: ''
       })
-    }
-
-    function makeTheNewRecipe(card) {
-      var newRecipe = ""
-      var cookingRecipeName = []
-      var recipeName = ""
-      var recipeID = card.recipe_id
-      cookingRecipeName = card.title.split(' ')
-      for (let i=0;i<cookingRecipeName.length;i++){
-        if (i===0) {
-          recipeName = cookingRecipeName[i]
-        } else  recipeName = recipeName + "_" + cookingRecipeName[i]
-      }
-      var recipePic = card.image_url
-      var recipeURL = ""
-      if (card.source_url.slice('4')[0] !== "s") {
-        recipeURL = "https" + card.source_url.slice('4')
-      }
-      newRecipe = "," + card.recipe_id + "$" + recipePic + "$" + recipeURL + "$" + recipeName
-      return putRecipe(newRecipe)
-    }
-    
-  }
-
-  handleNope (card) {
-    console.log(`Nope for ${card.text}`)
-  }
-
-  handleMaybe (card) {
-    console.log(`Maybe for ${card.text}`)
+    })
+    .then(res => {
+      return res.json()
+    })
+    .then(data => console.log(data))
+    .catch(err => {
+        console.log(err)
+    })
   }
 
   render() {
@@ -138,8 +123,6 @@ export default class Recipes extends React.Component {
           renderCard={(cardData) => <Card {...cardData} />}
           renderNoMoreCards={() => <NoMoreCards currentUser={this.props.currentUser} navigation={this.props.navigation} />}
           handleYup={this.handleYup}
-          handleNope={this.handleNope}
-          handleMaybe={this.handleMaybe}
         />
       </View>
     )

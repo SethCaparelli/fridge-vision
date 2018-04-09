@@ -20,12 +20,9 @@ export default class UserCamera extends React.Component {
   }
 
   takePic = () => {
-    //this.props.navigation.navigate('Recipes', {})
     ImagePicker.showImagePicker({}, response => {
       uploadImageAsync(response.uri)
     })
-
-
     async function uploadImageAsync(uri) {
       let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
       let uriParts = uri.split('.');
@@ -44,8 +41,9 @@ export default class UserCamera extends React.Component {
           'Content-Type': 'multipart/form-data',
         },
       }
-      return fetch(apiUrl, options)
-      .then(response => console.log(response))
+      return fetch(apiUrl, options).then(response => {
+        return response.json()
+    }).then(data => console.log(data))
     }
   }
 

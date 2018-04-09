@@ -36,7 +36,7 @@ export default class Users extends Component {
             console.log(error)
         })
     }
-    
+
     postUser = (user) => {
         this.setState({
             selectedUser: user,
