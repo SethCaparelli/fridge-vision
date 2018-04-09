@@ -12,7 +12,7 @@ class Card extends React.Component {
     return (
       <View style={{justifyContent: "center", alignItems: "center"}}>
         <View style={{width: 250, justifyContent: "center", alignItems: "center"}}>
-          <Text style={{fontWeight: "600", fontSize: 20}}>{this.props.title}</Text>
+          <Text style={{fontWeight: "600", fontSize: 20}}>{this.props.title.replace(/&amp;/g, 'and')}</Text>
         </View>
         <TouchableOpacity
           onPress={() => Linking.openURL(this.props.source_url)}>
