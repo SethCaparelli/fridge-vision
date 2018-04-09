@@ -86,7 +86,7 @@ export default class Users extends Component {
 
     render() {
         let yourUser = null
-        if(this.state.selectedUser !== null){
+        if(this.state.selectedUser){
             yourUser = (
                 <Button
                     buttonStyle={{

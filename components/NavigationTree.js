@@ -21,7 +21,10 @@ export default class NavigationTree extends Component {
     takePic = () => {
         ImagePicker.showImagePicker({}, response => {
             uploadImageAsync(response.uri)
-            this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser})
+            console.log(response)
+            if(response.uri) {
+                this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser})
+            }
         })
         async function uploadImageAsync(uri) {
             let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
