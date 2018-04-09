@@ -26,7 +26,7 @@ export default class NavigationTree extends Component {
             uploadImageAsync(response.uri)
             console.log(response)
             if(response.uri) {
-                this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser}, {recipes: this.state.recipes})
+                this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser})
             }
         })
         async function uploadImageAsync(uri) {
