@@ -14,14 +14,20 @@ import ImagePicker from "react-native-image-picker"
 import { StackNavigator } from 'react-navigation'
 
 export default class NavigationTree extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
+        this.state = {
+            recipes: []
+        }
     }
 
     takePic = () => {
         ImagePicker.showImagePicker({}, response => {
             uploadImageAsync(response.uri)
-            this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser})
+            console.log(response)
+            if(response.uri) {
+                this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser}, {recipes: this.state.recipes})
+            }
         })
         async function uploadImageAsync(uri) {
             let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
@@ -45,7 +51,9 @@ export default class NavigationTree extends Component {
             .then(response => {
                 return response.json()
             })
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+            })
         }
     }
 

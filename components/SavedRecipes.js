@@ -19,7 +19,6 @@ export default class SavedRecipes extends Component {
             return response.json()
         })
         .then(user => {
-            console.log(user.users.recipe)
             this.setState({
                 userSavedRecipes: user.users.recipes
             })
@@ -52,7 +51,7 @@ export default class SavedRecipes extends Component {
           }
 
         return(
-            <View style={{backgroundColor: "#94E1F2"}}>
+            <View style={{flex: 1, backgroundColor: "#94E1F2"}}>
                 <ScrollView>
                     {breakUpUrl(this.state.userSavedRecipes).map((current, index) => {
                         let url = current.url

@@ -34,7 +34,7 @@ class NoMoreCards extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
         <TouchableOpacity
           onPress={() => {this.props.navigation.navigate('SavedRecipes', {currentUser: this.props.navigation.state.params.currentUser})} }>
           <Text style={styles.noMoreCardsText}>See Your Recipes!</Text>
@@ -48,7 +48,7 @@ export default class Recipes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: [],
+      cards: this.props.navigation.state.params.recipes,
       currentUser: this.props.navigation.state.params.currentUser
     }
   }
@@ -59,10 +59,9 @@ export default class Recipes extends React.Component {
       return response.json()
     })
     .then(recipes => {
-      console.log(recipes)
-      this.setState({
-        cards: recipes
-      })
+        this.setState({
+          cards: recipes
+        })
     })
     .catch(error => console.log(error))
   }
@@ -110,35 +109,41 @@ export default class Recipes extends React.Component {
   }
 
   render() {
-    return (
-      <View style={{flex: 1, backgroundColor: "#85E4FF", justifyContent: "space-around", alignItems: "center"}}>
-        <View>
-          <Image style={{marginTop: 20, height: 72, width: 70}} source={require("../assets/icons/fridgely-icon.png")}/>
-        </View>
-        <SwipeCards
-          currentUser={this.state.currentUser}
-          cards={this.state.cards}
-          renderCard={(cardData) => <Card {...cardData} />}
-          renderNoMoreCards={() => <NoMoreCards currentUser={this.props.currentUser} navigation={this.props.navigation} />}
-          handleYup={this.handleYup}
-        />
-        <View>
-          <Button
-            onPress={() => this.props.navigation.navigate('SavedRecipes', {currentUser: this.props.navigation.state.params.currentUser})}
-            title='See Your Recipes'
-            buttonStyle={{
-              backgroundColor: "#2B83DA",
-              width: 200,
-              height: 45,
-              borderColor: "transparent",
-              borderWidth: 0,
-              borderRadius: 5,
-              marginBottom: 10
-            }}
+    if(this.state.cards) {
+      return (
+        <View style={{flex: 1, backgroundColor: "#85E4FF", justifyContent: "space-around", alignItems: "center"}}>
+          <View>
+            <Image style={{marginTop: 20, height: 72, width: 70}} source={require("../assets/icons/fridgely-icon.png")}/>
+          </View>
+          <SwipeCards
+            currentUser={this.state.currentUser}
+            cards={this.state.cards}
+            renderCard={(cardData) => <Card {...cardData} />}
+            renderNoMoreCards={() => <NoMoreCards currentUser={this.props.currentUser} navigation={this.props.navigation} />}
+            handleYup={this.handleYup}
           />
+          <View>
+            <Button
+              onPress={() => this.props.navigation.navigate('SavedRecipes', {currentUser: this.props.navigation.state.params.currentUser})}
+              title='See Your Recipes'
+              buttonStyle={{
+                backgroundColor: "#2B83DA",
+                width: 200,
+                height: 45,
+                borderColor: "transparent",
+                borderWidth: 0,
+                borderRadius: 5,
+                marginBottom: 10
+              }}
+            />
+          </View>
         </View>
-      </View>
-    )
+      )
+    } else {
+      return (
+        <View style={{flex: 1, backgroundColor: "#85E4FF", justifyContent: "space-around", alignItems: "center"}}><Text>Loading...</Text></View>
+      )
+    }
   }
 }
 
