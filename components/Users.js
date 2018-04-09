@@ -7,7 +7,8 @@ import {
     TextInput,
     Modal,
     Image,
-    TouchableHighlight
+    TouchableHighlight,
+    TouchableOpacity
 } from "react-native"
 import { StackNavigator } from 'react-navigation'
 import { Button } from "react-native-elements"
@@ -88,10 +89,12 @@ export default class Users extends Component {
         let yourUser = null
         if(this.state.selectedUser !== null){
             yourUser = (
-                <Button
+                <TouchableOpacity
                   style={styles.buttonStyle}
-                  title = {this.state.selectedUser.userName}
-                  onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.state.selectedUser})} />
+                  onPress={() => this.props.navigation.navigate('NavigationTree', 
+                  {currentUser: this.state.selectedUser})}>
+                  {this.state.selectedUser.userName}
+                  </TouchableOpacity>
             )
         }
         return (
@@ -173,6 +176,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 40,
         borderColor: "transparent",
+        color: 'white',
         borderWidth: 0,
         borderRadius: 5,
         marginTop: 10
