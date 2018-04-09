@@ -14,8 +14,11 @@ import ImagePicker from "react-native-image-picker"
 import { StackNavigator } from 'react-navigation'
 
 export default class NavigationTree extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
+        this.state = {
+            recipes: []
+        }
     }
 
     takePic = () => {
@@ -23,7 +26,7 @@ export default class NavigationTree extends Component {
             uploadImageAsync(response.uri)
             console.log(response)
             if(response.uri) {
-                this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser})
+                this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser}, {recipes: this.state.recipes})
             }
         })
         async function uploadImageAsync(uri) {
@@ -48,7 +51,9 @@ export default class NavigationTree extends Component {
             .then(response => {
                 return response.json()
             })
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+            })
         }
     }
 

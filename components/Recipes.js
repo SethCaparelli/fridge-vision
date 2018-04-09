@@ -48,7 +48,7 @@ export default class Recipes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: [],
+      cards: this.props.navigation.state.params.recipes,
       currentUser: this.props.navigation.state.params.currentUser
     }
   }
