@@ -71,12 +71,13 @@ export default class Recipes extends React.Component {
     }
     newRecipe =  card.recipe_id + "$" + recipePic + "$" + recipeURL + "$" + recipeName + ","
     let currentUser = this.props.navigation.state.params.currentUser
+    console.log(currentUser)
     fetch("https://pure-meadow-62546.herokuapp.com/user/" + currentUser.id, {
       method: 'PUT',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-    },
+      },
       body: JSON.stringify({
         id: currentUser.id,
         userName: currentUser.userName,

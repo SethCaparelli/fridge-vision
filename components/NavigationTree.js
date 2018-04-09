@@ -23,40 +23,39 @@ export default class NavigationTree extends Component {
 
     takePic = () => {
         ImagePicker.showImagePicker({}, response => {
-            uploadImageAsync(response.uri)
-            console.log(response)
-            if(response.uri) {
-                this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser}, {recipes: this.state.recipes})
-            }
+            this.uploadImageAsync(response.uri)
+            .then((response) => {
+                console.log(response)
+                return this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser, recipes: response})
+            })
         })
-        async function uploadImageAsync(uri) {
-            let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
-            let uriParts = uri.split('.');
-            let fileType = uriParts[uriParts.length - 1]
-            let formData = new FormData()
-            formData.append('photo', {
-                uri,
-                name: `photo.${fileType}`,
-                type: `image/${fileType}`,
-            })
-            let options = {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    "Accept": 'application/json',
-                    'Content-Type': 'multipart/form-data',
-                },
-            }
-            return fetch(apiUrl, options)
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                this.setState({
-                    recipes: data
-                })
-            })
+    }
+
+    uploadImageAsync = (uri) => {
+        let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
+        let uriParts = uri.split('.');
+        let fileType = uriParts[uriParts.length - 1]
+        let formData = new FormData()
+        formData.append('photo', {
+            uri,
+            name: `photo.${fileType}`,
+            type: `image/${fileType}`,
+        })
+        let options = {
+            method: 'POST',
+            body: formData,
+            headers: {
+                "Accept": 'application/json',
+                'Content-Type': 'multipart/form-data',
+            },
         }
+        return fetch(apiUrl, options)
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            return data
+        })
     }
 
     deleteUser = (id) => {
