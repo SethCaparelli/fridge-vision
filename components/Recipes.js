@@ -109,8 +109,8 @@ export default class Recipes extends React.Component {
           />
           <View>
             <Button
-              onPress={() => this.props.navigation.navigate('SavedRecipes', {currentUser: this.props.navigation.state.params.currentUser})}
-              title='See Your Recipes'
+              onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.props.navigation.state.params.currentUser})}
+              title='Go To Profile'
               buttonStyle={{
                 backgroundColor: "#2B83DA",
                 width: 200,
