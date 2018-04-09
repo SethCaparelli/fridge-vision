@@ -7,72 +7,137 @@ import {
     TextInput,
     Button,
     Modal,
-    Image
+    Image,
+    TouchableOpacity,
 } from "react-native"
+import ImagePicker from "react-native-image-picker"
 import { StackNavigator } from 'react-navigation'
 
 export default class NavigationTree extends Component {
-
-deleteUser = (id) => {
-    fetch("https://pure-meadow-62546.herokuapp.com/user" + '/' + id, {
-        method: 'DELETE'
-    })
-    .then(response => response.json())
-}
-
-
-render() {
-    let currentUser = this.props.navigation.state.params.currentUser
-    let userId = this.props.navigation.state.params.currentUser.id
-    return (
-    <View style={styles.modal}>
-        <View style={{flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
-            <Image style={styles.icon} source={require("../assets/icons/fridgely-icon.png")}/>
-        </View>
-        <Button
-            title = "Send a Picture"
-            onPress = {() => {this.props.navigation.navigate('UserCamera', {currentUser: currentUser})} } />
-        <Button
-            title = "Go to Existing Recipes"
-            onPress = { () => {this.props.navigation.navigate('SavedRecipes', {currentUser: currentUser})} } />
-        <Button
-            style={{fontColor: 'red'}}
-            title = "Delete User"
-            onPress = { () => this.deleteUser(userId)} />
-    </View>
-    )
-}
-
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "space-around",
-        alignItems: "center",
-        backgroundColor: "#94E1F2"
-    },
-    newUser: {
-        flex: 0.3,
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "auto"
-    },
-    icon: {
-        height: 72,
-        width: 70,
-      },
-    modal: {
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "space-around",
-        alignItems: "center",
-        backgroundColor: "#94E1F2",
-        marginTop: 22
-    },
-    label: {
-        fontSize: 20,
-        fontWeight: "600"
+    constructor(props) {
+        super(props)
     }
-})
+
+    takePic = () => {
+        ImagePicker.showImagePicker({}, response => {
+            uploadImageAsync(response.uri)
+            this.props.navigation.navigate('Recipes', {currentUser: this.props.navigation.state.params.currentUser})
+        })
+        async function uploadImageAsync(uri) {
+            let apiUrl = 'https://pure-meadow-62546.herokuapp.com/upload'
+            let uriParts = uri.split('.');
+            let fileType = uriParts[uriParts.length - 1]
+            let formData = new FormData()
+            formData.append('photo', {
+                uri,
+                name: `photo.${fileType}`,
+                type: `image/${fileType}`,
+            })
+            let options = {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    "Accept": 'application/json',
+                    'Content-Type': 'multipart/form-data',
+                },
+            }
+            return fetch(apiUrl, options)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => console.log(data))
+        }
+    }
+
+    deleteUser = (id) => {
+        fetch("https://pure-meadow-62546.herokuapp.com/user" + '/' + id, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+    }
+
+
+    render() {
+        let currentUser = this.props.navigation.state.params.currentUser
+        let userId = this.props.navigation.state.params.currentUser.id
+        return (
+        <View style={styles.container}>
+            <View style={{flex: 1, flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+                <Image style={styles.icon} source={require("../assets/icons/fridgely-icon.png")}/>
+                <Text
+                    style={{fontSize: 40}}
+                >{currentUser.userName}</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                    style={{
+                        height: 130,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: 130,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: 5,
+                        backgroundColor: "#8AC926"
+                    }}
+                    onPress={this.takePic}>
+                    <Text style={styles.text}>Send Picture</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress = { () => {this.props.navigation.navigate('SavedRecipes', {currentUser: currentUser})} }
+                    style={{
+                        height: 130,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: 130,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: 5,
+                        backgroundColor: "#2B83DA"
+                    }}>
+                    <Text style={styles.text}>Saved Recipes</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={{flex: 1, justifyContent: "center"}}>
+                <Button
+                    title = "Delete User"
+                    onPress = { () => this.deleteUser(userId)} />
+            </View>
+        </View>
+        )
+    }
+
+    }
+
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "center",
+            backgroundColor: "#94E1F2"
+        },
+        newUser: {
+            flex: 1,
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: "auto"
+        },
+        icon: {
+            height: 72,
+            width: 70,
+        },
+        buttonContainer: {
+            flex: 2,
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+            width: "100%"
+        },
+        text: {
+            fontSize: 15,
+            fontWeight: "600",
+            textAlign: "center",
+            justifyContent: "center"
+        },
+    })

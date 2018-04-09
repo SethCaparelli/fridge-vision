@@ -41,9 +41,11 @@ export default class UserCamera extends React.Component {
           'Content-Type': 'multipart/form-data',
         },
       }
-      return fetch(apiUrl, options).then(response => {
+      return fetch(apiUrl, options)
+      .then(response => {
         return response.json()
-    }).then(data => console.log(data))
+      })
+      .then(data => console.log(data))
     }
   }
 

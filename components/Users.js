@@ -5,12 +5,12 @@ import {
     Text,
     Picker,
     TextInput,
-    Button,
     Modal,
     Image,
     TouchableHighlight
 } from "react-native"
 import { StackNavigator } from 'react-navigation'
+import { Button } from "react-native-elements"
 
 
 export default class Users extends Component {
@@ -89,44 +89,56 @@ export default class Users extends Component {
         if(this.state.selectedUser !== null){
             yourUser = (
                 <Button
-                title="Next"
-                onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.state.selectedUser})}/>
+                    buttonStyle={{
+                        backgroundColor: "#9B489B",
+                        width: 200,
+                        height: 40,
+                        borderColor: "transparent",
+                        borderWidth: 0,
+                        borderRadius: 5,
+                        marginTop: 10
+                    }}
+                  title = {this.state.selectedUser.userName}
+                  onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.state.selectedUser})} />
             )
         }
         return (
             <View style={styles.container}>
-                <View style={{flexDirection: "column", alignItems: "center"}}>
+                <View style={{flexDirection: "column", alignItems: "center", justifyContent: "center", flex: 0.5}}>
                     <Image style={{height: 60, width: 60}} source={require("../assets/icons/user-icon.png")}/>
-                    <Text style={{fontSize: 30, fontWeight: "700"}}>SIGN IN</Text>
+                    <Text style={{fontSize: 25, fontWeight: "700"}}>SIGN IN</Text>
                 </View>
-                <View>
-                    <View style={{flexDirection: "column", alignItems: "center"}}>
-                        <Text style={styles.label}>Existing User</Text>
-                        <Picker
-                            style={{borderWidth: 1, borderColor: "black", width: 200}}
-                            selectedValue={this.state.users}
-                            onValueChange={this.pickerChangeHandler}>
-                            {this.state.users
-                                .map(user =>
-                            <Picker.Item key={user} label= {user.userName} value={user} />)}
-                        </Picker>
-                        {yourUser}
-                    </View>
+                <View style={{flex: 1, flexDirection: "column", alignItems: "center"}}>
+                    <Text style={styles.label}>Existing User</Text>
+                    <Picker
+                        style={{borderWidth: 1, borderColor: "black", width: 200}}
+                        selectedValue={this.state.users}
+                        onValueChange={this.pickerChangeHandler}>
+                        {this.state.users
+                            .map(user =>
+                        <Picker.Item key={user} label= {user.userName} value={user} />)}
+                    </Picker>
+                    {yourUser}
                 </View>
-                <Text>-OR-</Text>
-                <View style={{flex: 0.7}}>
-                    <View style={styles.newUser}>
-                        <Text style={styles.label}>New User</Text>
-                        <TextInput
-                            style = {{ borderColor: "black", borderWidth: 1, width: 200}}
-                            placeHolder = "Add User"
-                            value={this.state.newUser}
-                            onChangeText={this.updateUser}
-                        />
-                    </View>
+                <View style={styles.newUser}>
+                    <Text style={styles.label}>New User</Text>
+                    <TextInput
+                        style = {{ borderColor: "black", borderWidth: 1, width: 200, marginBottom: 10}}
+                        placeHolder = "Add User"
+                        value={this.state.newUser}
+                        onChangeText={this.updateUser}
+                    />
                     <Button
                         title = "Add User"
                         onPress = {this.postUser}
+                        buttonStyle={{
+                            backgroundColor: "#2B83DA",
+                            width: 100,
+                            height: 50,
+                            borderColor: "transparent",
+                            borderWidth: 0,
+                            borderRadius: 5
+                        }}
                     />
                 </View>
             </View>
@@ -143,10 +155,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#94E1F2"
     },
     newUser: {
-        flex: 0.3,
+        flex: 0.75,
         flexDirection: "column",
         alignItems: "center",
-        marginTop: "auto"
+        justifyContent: "center"
     },
     icon: {
         height: 72,

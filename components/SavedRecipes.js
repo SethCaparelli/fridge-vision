@@ -28,6 +28,7 @@ export default class SavedRecipes extends Component {
     }
 
     render(){
+
         function breakUpUrl(rawRecipe){
             var finalRecipeArray = []
             for (var i = 0; i < rawRecipe.split(',').length-1; i++) {
@@ -47,30 +48,32 @@ export default class SavedRecipes extends Component {
               }
               finalRecipeArray.push(eachRecipeObject)
             }
-            console.log(finalRecipeArray)
             return finalRecipeArray
           }
+
         return(
-            <ScrollView>
-            {breakUpUrl(this.state.userSavedRecipes).map((current, index) => {
-                let url = current.url
-                return (
-                    <Card
-                    title={current.title}>
-                        <View key={index} >
-                        <TouchableHighlight
-                        style={{justifyContent: "center", alignItems: "center"}}
-                        onPress={() => Linking.openURL(url)}>
-                        <Image
-                            source={{uri: current.image}}
-                            style={{height: 250, width: 250, borderRadius: 75}}
-                        />
-                        </TouchableHighlight>
-                        </View>
-                    </Card>
-                )
-            })}
-        </ScrollView>
+            <View style={{backgroundColor: "#94E1F2"}}>
+                <ScrollView>
+                    {breakUpUrl(this.state.userSavedRecipes).map((current, index) => {
+                        let url = current.url
+                        return (
+                            <Card
+                            title={current.title}>
+                                <View key={index} >
+                                <TouchableHighlight
+                                style={{justifyContent: "center", alignItems: "center"}}
+                                onPress={() => Linking.openURL(url)}>
+                                <Image
+                                    source={{uri: current.image}}
+                                    style={{height: 250, width: 250, borderRadius: 75}}
+                                />
+                                </TouchableHighlight>
+                                </View>
+                            </Card>
+                        )
+                    })}
+                </ScrollView>
+            </View>
         )
     }
 }
