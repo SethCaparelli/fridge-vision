@@ -58,6 +58,7 @@ export default class SavedRecipes extends Component {
                         let url = current.url
                         return (
                             <Card
+                            key={index}
                             title={current.title.replace(/&amp;/g, 'and')}>
                                 <View key={index} >
                                 <TouchableHighlight

@@ -139,7 +139,7 @@ export default class Users extends Component {
                             borderWidth: 0,
                             borderRadius: 5
                         }}
-                    />
+                    onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.state.selectedUser})} />
                 </View>
             </View>
         )
