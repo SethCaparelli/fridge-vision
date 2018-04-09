@@ -52,7 +52,9 @@ export default class NavigationTree extends Component {
                 return response.json()
             })
             .then(data => {
-                console.log(data)
+                this.setState({
+                    recipes: data
+                })
             })
         }
     }

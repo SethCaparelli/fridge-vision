@@ -53,19 +53,6 @@ export default class Recipes extends React.Component {
     }
   }
 
-  componentDidMount() {
-    fetch("https://pure-meadow-62546.herokuapp.com/recipe")
-    .then(response => {
-      return response.json()
-    })
-    .then(recipes => {
-        this.setState({
-          cards: recipes
-        })
-    })
-    .catch(error => console.log(error))
-  }
-
   handleYup = (card) => {
     var newRecipe = ""
     var cookingRecipeName = []
