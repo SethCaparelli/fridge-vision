@@ -58,14 +58,14 @@ export default class SavedRecipes extends Component {
                         let url = current.url
                         return (
                             <Card
-                            title={current.title}>
+                            title={current.title.replace(/&amp;/g, 'and')}>
                                 <View key={index} >
                                 <TouchableHighlight
                                 style={{justifyContent: "center", alignItems: "center"}}
                                 onPress={() => Linking.openURL(url)}>
                                 <Image
                                     source={{uri: current.image}}
-                                    style={{height: 250, width: 250, borderRadius: 75}}
+                                    style={{height: 250, width: 250, borderRadius: 10}}
                                 />
                                 </TouchableHighlight>
                                 </View>

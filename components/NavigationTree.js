@@ -138,6 +138,7 @@ export default class NavigationTree extends Component {
             fontSize: 15,
             fontWeight: "600",
             textAlign: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            color: "white"
         },
     })

@@ -11,7 +11,8 @@ import {
 } from "react-native"
 import { StackNavigator } from 'react-navigation'
 import { Button } from "react-native-elements"
-
+import {YellowBox} from 'react-native'
+console.disableYellowBox = true
 
 export default class Users extends Component {
     state = {
@@ -19,7 +20,6 @@ export default class Users extends Component {
         newUser: {},
         selectedUser: null,
     }
-
     componentDidMount = () => {
         fetch("https://pure-meadow-62546.herokuapp.com/user")
         .then(response => {

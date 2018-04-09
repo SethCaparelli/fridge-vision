@@ -7,6 +7,8 @@ import SavedRecipes from './components/SavedRecipes'
 import NavigationTree from './components/NavigationTree'
 import { Button } from 'react-native-elements'
 import { StackNavigator } from 'react-navigation'
+import {YellowBox} from 'react-native'
+console.disableYellowBox = true
 
 class App extends React.Component {
   static navigationOptions = {

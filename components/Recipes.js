@@ -4,6 +4,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity, Linking} from 'react-na
 import { StackNavigator } from "react-navigation"
 import SwipeCards from 'react-native-swipe-cards'
 import SavedRecipes from "./SavedRecipes"
+import { Button } from "react-native-elements"
 
 class Card extends React.Component {
 
@@ -16,7 +17,7 @@ class Card extends React.Component {
         <TouchableOpacity
           onPress={() => Linking.openURL(this.props.source_url)}>
           <Image
-          style={{height: 250, width: 250, borderRadius: 75}}
+          style={{height: 250, width: 250, borderRadius: 10}}
           source={{uri: "https" + this.props.image_url.slice("4")}}/>
         </TouchableOpacity>
       </View>
@@ -47,10 +48,7 @@ export default class Recipes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: [{
-        text: "Fridgely",
-        image_url: ""
-      }],
+      cards: [],
       currentUser: this.props.navigation.state.params.currentUser
     }
   }
@@ -115,7 +113,7 @@ export default class Recipes extends React.Component {
     return (
       <View style={{flex: 1, backgroundColor: "#85E4FF", justifyContent: "space-around", alignItems: "center"}}>
         <View>
-          <Image style={{ height: 72, width: 70}} source={require("../assets/icons/fridgely-icon.png")}/>
+          <Image style={{marginTop: 20, height: 72, width: 70}} source={require("../assets/icons/fridgely-icon.png")}/>
         </View>
         <SwipeCards
           currentUser={this.state.currentUser}
@@ -124,6 +122,21 @@ export default class Recipes extends React.Component {
           renderNoMoreCards={() => <NoMoreCards currentUser={this.props.currentUser} navigation={this.props.navigation} />}
           handleYup={this.handleYup}
         />
+        <View>
+          <Button
+            onPress={() => this.props.navigation.navigate('SavedRecipes', {currentUser: this.props.navigation.state.params.currentUser})}
+            title='See Your Recipes'
+            buttonStyle={{
+              backgroundColor: "#2B83DA",
+              width: 200,
+              height: 45,
+              borderColor: "transparent",
+              borderWidth: 0,
+              borderRadius: 5,
+              marginBottom: 10
+            }}
+          />
+        </View>
       </View>
     )
   }
