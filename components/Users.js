@@ -89,15 +89,7 @@ export default class Users extends Component {
         if(this.state.selectedUser){
             yourUser = (
                 <Button
-                    buttonStyle={{
-                        backgroundColor: "#9B489B",
-                        width: 200,
-                        height: 40,
-                        borderColor: "transparent",
-                        borderWidth: 0,
-                        borderRadius: 5,
-                        marginTop: 10
-                    }}
+                  style={styles.buttonStyle}
                   title = {this.state.selectedUser.userName}
                   onPress={() => this.props.navigation.navigate('NavigationTree', {currentUser: this.state.selectedUser})} />
             )
@@ -175,5 +167,14 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 20,
         fontWeight: "600"
+    },
+    buttonStyle: {
+        backgroundColor: "#9B489B",
+        width: 200,
+        height: 40,
+        borderColor: "transparent",
+        borderWidth: 0,
+        borderRadius: 5,
+        marginTop: 10
     }
 })
