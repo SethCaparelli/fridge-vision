@@ -85,7 +85,7 @@ export default class Recipes extends React.Component {
     if (card.source_url.slice('4')[0] !== "s") {
       recipeURL = "https" + card.source_url.slice('4')
     }
-    newRecipe = "," + card.recipe_id + "$" + recipePic + "$" + recipeURL + "$" + recipeName
+    newRecipe =  card.recipe_id + "$" + recipePic + "$" + recipeURL + "$" + recipeName + ","
     let currentUser = this.props.navigation.state.params.currentUser
     fetch("https://pure-meadow-62546.herokuapp.com/user/" + currentUser.id, {
       method: 'PUT',
@@ -96,7 +96,7 @@ export default class Recipes extends React.Component {
       body: JSON.stringify({
         id: currentUser.id,
         userName: currentUser.userName,
-        recipes: newRecipe + currentUser.recipes ,
+        recipes: newRecipe + currentUser.recipes,
         created_at: null,
         updated_at: null,
         other: ''
