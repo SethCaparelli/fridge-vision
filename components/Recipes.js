@@ -12,7 +12,7 @@ class Card extends React.Component {
     return (
       <View style={{justifyContent: "center", alignItems: "center"}}>
         <View style={{width: 250, justifyContent: "center", alignItems: "center"}}>
-          <Text style={{fontWeight: "600", fontSize: 20}}>{this.props.title.replace(/&amp;/g, 'and')}</Text>
+          <Text style={{fontWeight: "600", fontSize: 20}}>{this.props.title.replace(/&amp;/g, 'and').replace(/&nbsp;/g, " ")}</Text>
         </View>
         <TouchableOpacity
           onPress={() => Linking.openURL(this.props.source_url)}>
@@ -78,7 +78,7 @@ export default class Recipes extends React.Component {
       body: JSON.stringify({
         id: currentUser.id,
         userName: currentUser.userName,
-        recipes: newRecipe + currentUser.recipes,
+        recipes: newRecipe,
         created_at: null,
         updated_at: null,
         other: ''
@@ -98,7 +98,7 @@ export default class Recipes extends React.Component {
       return (
         <View style={{flex: 1, backgroundColor: "#85E4FF", justifyContent: "space-around", alignItems: "center"}}>
           <View>
-            <Image style={{marginTop: 20, height: 72, width: 70}} source={require("../assets/icons/fridgely-icon.png")}/>
+            <Image style={styles.image} source={require("../assets/icons/fridgely-icon.png")}/>
           </View>
           <SwipeCards
             currentUser={this.state.currentUser}
@@ -156,5 +156,15 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 5,
     marginTop: 10
-}
+  },
+  image: {
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1,
+    marginTop: 20,
+    height: 72,
+    width: 70
+  }
 })

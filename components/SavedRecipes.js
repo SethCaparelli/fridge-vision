@@ -12,7 +12,6 @@ export default class SavedRecipes extends Component {
 
     componentDidMount() {
         let id = this.props.navigation.state.params.currentUser.id
-        console.log(id)
         fetch("https://pure-meadow-62546.herokuapp.com/user/" + id)
         .then(response => {
             console.log(response)
@@ -57,8 +56,9 @@ export default class SavedRecipes extends Component {
                         let url = current.url
                         return (
                             <Card
+                            style={styles.card}
                             key={index}
-                            title={current.title.replace(/&amp;/g, 'and')}>
+                            title={current.title.replace(/&amp;/g, 'and').replace(/&nbsp;/g, " ")}>
                                 <View key={index} >
                                 <TouchableHighlight
                                 style={{justifyContent: "center", alignItems: "center"}}
@@ -77,3 +77,13 @@ export default class SavedRecipes extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    card: {
+      shadowColor: "black",
+      shadowOffset: { width: 200, height: 200 },
+      shadowOpacity: 0.8,
+      shadowRadius: 20,
+      elevation: 1,
+    }
+  })
