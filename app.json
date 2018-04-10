@@ -1,7 +1,4 @@
 {
-  "expo": {
-    "sdkVersion": "26.0.0"
-  },
-  "name": "FridgeVision",
-  "displayName": "Fridgely"
+  "name": "Fridge-Vision",
+  "displayName": "Fridge-Vision"
 }
