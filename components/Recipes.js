@@ -98,7 +98,7 @@ export default class Recipes extends React.Component {
       return (
         <View style={{flex: 1, backgroundColor: "#85E4FF", justifyContent: "space-around", alignItems: "center"}}>
           <View>
-            <Image style={styles.image} source={require("../assets/icons/fridgely-icon.png")}/>
+            <Image style={styles.image} source={require("../assets/icons/fridge-vision-icon-small.png")}/>
           </View>
           <SwipeCards
             currentUser={this.state.currentUser}

@@ -72,7 +72,7 @@ export default class NavigationTree extends Component {
         return (
         <View style={styles.container}>
             <View style={{flex: 1, flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
-                <Image style={styles.icon} source={require("../assets/icons/fridgely-icon.png")}/>
+                <Image style={styles.icon} source={require("../assets/icons/fridge-vision-icon-small.png")}/>
                 <Text
                     style={{fontSize: 40}}
                 >{currentUser.userName}</Text>

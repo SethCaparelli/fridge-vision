@@ -46,7 +46,7 @@ class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Image style={{height: 239, width: 230, marginLeft: 66, marginTop: 120, marginBottom: 80}} source={require("./assets/icons/fridgely-icon.png")}/>
+        <Image style={{height: 240, width: 238, marginLeft: 0, marginTop: 120, marginBottom: 80}} source={require("./assets/icons/fridge-vision-icon.png")}/>
        <Button
           onPress={() => this.props.navigation.navigate('Users')}
           title='Get Started'
