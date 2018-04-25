@@ -17,7 +17,7 @@ export default class NavigationTree extends Component {
     constructor() {
         super()
         this.state = {
-            recipes: []
+            recipes: [],
         }
     }
 
